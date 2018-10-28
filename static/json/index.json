@@ -7,5 +7,6 @@
     "momeyImg":"/static/image/momey.png",
     "finishImg":"/static/image/finish.png",
     "activeImg":"/static/image/active.png",
-    "vipImg":"/static/image/vip.png"
+    "vipImg":"/static/image/vip.png",
+    "noThing":"/static/image/no.png"
 }

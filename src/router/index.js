@@ -11,9 +11,16 @@ import Detail from '@/components/Detail'
 import Setting from '@/components/Setting'
 import Money from '@/components/Money'
 import MyTask from '@/components/MyTask'
+import Active from '@/components/Active'
 import VipStatus from '@/components/VipStatus'
 import Enjoy from '@/components/Enjoy'
 import Upgrade from '@/components/Upgrade'
+import MomeyDetail from '@/components/MomeyDetail'
+import Address from '@/components/Address'
+import Inform from '@/components/Inform'
+import Question from '@/components/Question'
+import Help from '@/components/Help'
+import InformDetail from '@/components/InformDetail'
 
 
 
@@ -67,6 +74,11 @@ export default new Router({
       component: MyTask
     },
     {
+      path: '/Active',
+      name: 'Active',
+      component: Active
+    },
+    {
       path: '/VipStatus',
       name: 'VipStatus',
       component: VipStatus
@@ -80,6 +92,36 @@ export default new Router({
       path: '/Upgrade',
       name: 'Upgrade',
       component: Upgrade
+    },
+    {
+      path: '/MomeyDetail',
+      name: 'MomeyDetail',
+      component: MomeyDetail
+    },
+    {
+      path: '/Address',
+      name: 'Address',
+      component: Address
+    },
+    {
+      path: '/Inform',
+      name: 'Inform',
+      component: Inform
+    },
+    {
+      path: '/Question',
+      name: 'Question',
+      component: Question
+    },
+    {
+      path: '/Help',
+      name: 'Help',
+      component: Help 
+    },
+    {
+      path: '/InformDetail',
+      name: 'InformDetail',
+      component: InformDetail
     }
   ]
 })

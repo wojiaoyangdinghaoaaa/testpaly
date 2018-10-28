@@ -14,7 +14,7 @@
                     <img :src="finishImgUrl"/>
                     <div>我的任务</div>  
                 </div>
-                <div>
+                <div  @click="goActive">
                     <img :src="activeImgUrl"/>
                     <div>剩余活跃度</div>  
                 </div>
@@ -32,7 +32,7 @@
 
         <div class='listAll'>
 
-            <div class='lists'>
+            <div class='lists' @click="goMomeyDetail">
                 <div class='listsLeft'>
                     <i class='listsLeftIcon listsLeftMomeyIcon'></i>
                     <span class='listsLeftText'>资金明细</span>
@@ -40,7 +40,7 @@
                 <i class="listsRightIcon"></i>
             </div>
 
-            <div class='lists'>
+            <div class='lists' @click="goAddress">
                 <div class='listsLeft'>
                     <i class='listsLeftIcon listsLeftMyIcon'></i>
                     <span class='listsLeftText'>收货地址</span>
@@ -48,7 +48,7 @@
                 <i class="listsRightIcon"></i>
             </div>
 
-            <div class='lists'>
+            <div class='lists' @click="goInform">
                 <div class='listsLeft'>
                     <i class='listsLeftIcon listsLeftInformIcon'></i>
                     <span class='listsLeftText'>通知中心</span>
@@ -56,7 +56,7 @@
                 <i class="listsRightIcon"></i>
             </div>
 
-            <div class='lists'>
+            <div class='lists' @click="goHelp">
                 <div class='listsLeft'>
                     <i class='listsLeftIcon listsLeftHelpIcon'></i>
                     <span class='listsLeftText'>帮助中心</span>
@@ -64,10 +64,10 @@
                 <i class="listsRightIcon"></i>
             </div>
 
-            <div class='lists'>
+            <div class='lists' @click="goQuestion">
                 <div class='listsLeft'>
                     <i class='listsLeftIcon listsLeftQuestionIcon'></i>
-                    <span class='listsLeftText'>问题反馈</span>
+                    <span class='listsLeftText'>意见反馈</span>
                 </div>
                 <i class="listsRightIcon"></i>
             </div>
@@ -104,8 +104,26 @@ export default {
         goMyTask(){
             this.$router.push({path:'/MyTask'});
         },
+        goActive(){
+            this.$router.push({path:'/Active'});
+        },
         goVipStatus(){
             this.$router.push({path:'/VipStatus'});
+        },
+        goMomeyDetail(){
+            this.$router.push({path:'/MomeyDetail'});
+        },
+        goAddress(){
+            this.$router.push({path:'/Address'});
+        },
+        goInform(){
+            this.$router.push({path:'/Inform'});
+        },
+        goHelp(){
+            this.$router.push({path:'/Help'});
+        },
+        goQuestion(){
+            this.$router.push({path:'/Question'});
         }
     }
 }

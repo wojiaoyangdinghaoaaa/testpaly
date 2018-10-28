@@ -3,14 +3,14 @@
         <div class="headerNav">
             <!-- header部分 -->
             <van-nav-bar
-            title="我的任务"
+            title="资金明细"
             left-arrow
             @click-left="onClickLeft"
             />
         </div>
         <div class="content">
             <van-tabs v-model="active" @click="onClick" sticky>
-                <van-tab title="已领取">
+                <van-tab title="全部记录">
                     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
                         <van-list
                         v-model="loading"
@@ -18,18 +18,43 @@
                         @load="onLoad"
                         >   
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">任务收益</p>
+                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightAdd">+4.00</p>
+                                </div> 
                             </div>
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">余额提现</p>
+                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightSub">-50.00</p>
+                                </div> 
                             </div>
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">任务收益</p>
+                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightAdd">+3.00</p>
+                                </div> 
+                            </div>
+
+                            <div class="list">
+                                <div class="listLeft">
+                                    <p class="listLeftName">余额提现</p>
+                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightSub">-100.00</p>
+                                </div> 
                             </div>
 
                             <!-- <div class="noThingBig">
@@ -41,7 +66,7 @@
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
-                <van-tab title="待审核">
+                <van-tab title="任务收益">
                     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
                         <van-list
                         v-model="loading"
@@ -50,26 +75,34 @@
                         >   
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">任务收益</p>
+                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightAdd">+4.00</p>
+                                </div> 
                             </div>
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">任务收益</p>
+                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightAdd">+3.00</p>
+                                </div> 
                             </div>
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">任务收益</p>
+                                    <p class="listLeftTime">2018-10-27 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightAdd">+5.00</p>
+                                </div> 
                             </div>
-
 
                             <!-- <div class="noThingBig">
                                 <img :src="noThing" />
@@ -80,37 +113,44 @@
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
-                <van-tab title="已审核">
+                <van-tab title="提现记录">
                     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
                         <van-list
                         v-model="loading"
                         :finished="finished"
                         @load="onLoad"
                         >   
+
+
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">余额提现</p>
+                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightSub">-50.00</p>
+                                </div> 
                             </div>
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">余额提现</p>
+                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightSub">-100.00</p>
+                                </div> 
                             </div>
 
                             <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
+                                <div class="listLeft">
+                                    <p class="listLeftName">余额提现</p>
+                                    <p class="listLeftTime">2018-10-27 18:14:27</p>
+                                </div>
+                                <div class="listRight">
+                                    <p class="listRightSub">-150.00</p>
+                                </div> 
                             </div>
-
 
                             <!-- <div class="noThingBig">
                                 <img :src="noThing" />
@@ -122,42 +162,20 @@
                         </van-list>
                     </van-pull-refresh>  
                 </van-tab>
-                <van-tab title="未通过">
+                <van-tab title="充值记录">
                     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
                         <van-list
                         v-model="loading"
                         :finished="finished"
                         @load="onLoad"
                         >   
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                            </div>
-
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                            </div>
-
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                            </div>
+                    
 
 
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
 
                             
                             <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
@@ -256,11 +274,36 @@ export default {
     padding: 5px 0;
     box-sizing: border-box;
     border-bottom: 1px solid#E8E8E8;
+    overflow: hidden;
 }
-.list p{
-    margin: 10px 0;
-    color: #505050;
-    font-size: 14px;
+.listLeft{
+    float: left;
+}
+.listLeft p{
+    margin: 0;
+    margin-top: 10px;
+}
+.listLeftName{
+    /* font-size: 16px; */
+}
+.listLeft .listLeftTime{
+    font-size: 12px;
+    margin: 5px 0;
+    color: #888888;
+}
+.listRight{
+    float: right;
+}
+.listRight p{
+    font-size: 18px;
+    margin: 0;
+    line-height: 54px;
+}
+.listRightAdd{
+    color: #fe433a;
+}
+.listRightSub{
+    color: green;
 }
 .noThingBig{
     height: 300px;
