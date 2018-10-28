@@ -1,4 +1,57 @@
-    /* 头部字体大小 */
+  b{
+      font-weight: normal;
+  }
+  
+  
+  /* 头部字体大小 */
 .van-nav-bar__title{
-    font-size: 14px !important;
+    font-size: 16px !important;
+}
+.van-nav-bar .van-icon{
+    color: #fff !important;
+}
+.van-icon-arrow::before{
+    color: #fff !important;
+    font-size: 17px !important; 
+}
+.van-dialog__content{
+    text-align: center !important;
+}
+.van-button--primary{
+    background-color: #0099FF !important;
+    border: 1px solid #0099FF !important;
+    width: 80% !important;
+    font-size: 18px !important;
+    border-radius: 8px !important;
+    margin: 20px 10% !important;
+    margin-bottom: 16px !important;
+}
+/* 滚动条样式 */
+.van-notice-bar{
+height: 34px !important;
+background: #F8F8F8 !important;
+}
+
+/* tab切换样式 */
+.van-tabs--line{
+    padding-top: 50px !important;
+    margin-top: 5px;
+}
+.van-hairline--top-bottom::after{
+    border-width: 0 !important;
+}
+.van-tabs--line .van-tabs__wrap{
+    height: 48px !important;
+}
+.van-tab{
+    font-size: 15px !important;
+    color: #A8A8A8 !important;
+}
+.van-tab--active{
+    color: #0099FF !important;
+}
+.van-tabs__line{
+    width: 66px !important;
+    left: -9px !important;
+    background-color:#0099FF !important;
 }

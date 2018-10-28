@@ -1,0 +1,11 @@
+{
+    "images":"/static/image/title.jpg",
+    "ruleLeft":"/static/image/ruleLeft.png",
+    "ruleRight":"/static/image/ruleRight.png",
+    "horn":"/static/image/laba.png",
+    "bgImg":"/static/image/bg.png",
+    "momeyImg":"/static/image/momey.png",
+    "finishImg":"/static/image/finish.png",
+    "activeImg":"/static/image/active.png",
+    "vipImg":"/static/image/vip.png"
+}
