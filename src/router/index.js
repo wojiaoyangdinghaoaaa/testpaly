@@ -21,6 +21,8 @@ import Inform from '@/components/Inform'
 import Question from '@/components/Question'
 import Help from '@/components/Help'
 import InformDetail from '@/components/InformDetail'
+import Service from '@/components/Service'
+import AboultUs from '@/components/AboultUs'
 
 
 
@@ -122,6 +124,16 @@ export default new Router({
       path: '/InformDetail',
       name: 'InformDetail',
       component: InformDetail
+    },
+    {
+      path: '/Service',
+      name: 'Service',
+      component: Service
+    },
+    {
+      path: '/AboultUs',
+      name: 'AboultUs',
+      component: AboultUs
     }
   ]
 })

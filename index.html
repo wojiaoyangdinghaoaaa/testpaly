@@ -16,4 +16,11 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script type="text/javascript" src="https://bot.4paradigm.com/web/assets/ics-web-sdk.js"></script>
+  <script type="text/javascript">
+    window.onload = function() {
+        IcsWebSdk.init('2045#012faa4d-74ac-4721-8758-39d657703f6e', '9ad88f20dcfb5470db703409967bdeb1'); // WebKey为Web接入页面获取的值, userId您系统中的用户ID可选(用于打通系统间ID)
+        // 调用的方法实现具体功能(具体参考方法调用部分)
+    }
+</script>
 </html>

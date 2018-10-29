@@ -3,7 +3,7 @@
         <div class="headerNav">
             <!-- header部分 -->
             <van-nav-bar
-            title="剩余活跃度"
+            title="在线客服"
             left-arrow
             @click-left="onClickLeft"
             />
@@ -81,17 +81,17 @@
                 </div>
 
             </div>
-            <div class="chatInput">
-                <div class="chatInputLeft"  v-on:click="transferToHuman()">
-                    <i class="iconfont">&#xe601;</i>
-                    <span>转人工</span>
-                </div>
-                <div class="chatInputCenter">
-                    <input type="text" placeholder="请简短描述你的问题"  v-model="sendstr">
-                </div>
-                <div class="chatInputRight"  v-on:click="send">
-                    发送
-                </div>
+        </div>
+        <div class="chatInput">
+            <div class="chatInputLeft"  v-on:click="transferToHuman()">
+                <i class="iconfont">&#xe601;</i>
+                <span>转人工</span>
+            </div>
+            <div class="chatInputCenter">
+                <input type="text" placeholder="请简短描述你的问题"  v-model="sendstr">
+            </div>
+            <div class="chatInputRight"  v-on:click="send">
+                发送
             </div>
         </div>
     </div>
@@ -228,11 +228,11 @@ export default {
     width: 100%;
     flex: 1;
     overflow: auto;
+    background: #f0f0f0;
 }
 .body{
-    height: 92%;
+    height: 100%;
     width: 100%;
-    background: #f0f0f0;
 }
 .history{
     margin: 0;

@@ -72,6 +72,22 @@
                 <i class="listsRightIcon"></i>
             </div>
 
+            <div class='lists' @click="goService">
+                <div class='listsLeft'>
+                    <i class='listsLeftIcon listsLeftServiceIcon'></i>
+                    <span class='listsLeftText'>在线客服</span>
+                </div>
+                <i class="listsRightIcon"></i>
+            </div>
+
+            <div class='lists' @click="goAboultUs">
+                <div class='listsLeft'>
+                    <i class='listsLeftIcon listsLeftAboultUsIcon'></i>
+                    <span class='listsLeftText'>关于我们</span>
+                </div>
+                <i class="listsRightIcon"></i>
+            </div>
+
         </div>
 
     </div>
@@ -124,6 +140,12 @@ export default {
         },
         goQuestion(){
             this.$router.push({path:'/Question'});
+        },
+        goService(){
+            this.$router.push({path:'/Service'});
+        },
+        goAboultUs(){
+            this.$router.push({path:'/AboultUs'});
         }
     }
 }
@@ -276,6 +298,22 @@ export default {
   font-size: 26px;
   color: #0099FF;
   content: '\e7de'
+}
+.listsLeftServiceIcon:after{
+  font-family: 'iconfont';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 26px;
+  color: #0099FF;
+  content: '\e627'
+}
+.listsLeftAboultUsIcon:after{
+  font-family: 'iconfont';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 26px;
+  color: #0099FF;
+  content: '\e645'
 }
 .listsLeftText{
   float: left;
