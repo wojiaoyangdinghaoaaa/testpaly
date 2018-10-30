@@ -135,6 +135,7 @@
                                 <p>提交时间:&nbsp;2018-10-25</p>
                                 <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
                                 <p>审核时间:&nbsp;2018-10-25</p>
+                                <div @click="aginPush">重新提交</div>
                             </div>
 
                             <div class="list">
@@ -143,6 +144,7 @@
                                 <p>提交时间:&nbsp;2018-10-25</p>
                                 <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
                                 <p>审核时间:&nbsp;2018-10-25</p>
+                                <div @click="aginPush">重新提交</div>
                             </div>
 
                             <div class="list">
@@ -151,6 +153,7 @@
                                 <p>提交时间:&nbsp;2018-10-25</p>
                                 <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
                                 <p>审核时间:&nbsp;2018-10-25</p>
+                                <div @click="aginPush">重新提交</div>
                             </div>
 
 
@@ -171,10 +174,10 @@
 </template>
 <script>
 import img from '../../static/json/index.json';
-import { NavBar, Tab, Tabs, List, PullRefresh} from 'vant';
+import { NavBar, Tab, Tabs, List, PullRefresh, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Tab).use(Tabs).use(List).use(PullRefresh);
+Vue.use(NavBar).use(Tab).use(Tabs).use(List).use(PullRefresh).use(Toast);
 
 export default {
     data() {
@@ -224,6 +227,9 @@ export default {
             //         this.lists.push(text);
             //     }
             // }, 1000);
+        },
+        aginPush(){
+            Toast('提交成功！');
         }
     }
 }
@@ -256,11 +262,22 @@ export default {
     padding: 5px 0;
     box-sizing: border-box;
     border-bottom: 1px solid#E8E8E8;
+    position: relative;
 }
 .list p{
     margin: 10px 0;
     color: #505050;
     font-size: 14px;
+}
+.list div{
+    position: absolute;
+    right: 0;
+    top: 38%;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 15px;
+    background: #0099FF;
 }
 .noThingBig{
     height: 300px;

@@ -241,10 +241,11 @@ export default {
     color: #707070;
     font-size: 16px;
 }
- .send-message {
+.send-message {
     text-align: right;
+    overflow: hidden;
 }
-  .send-message-box {
+.send-message-box {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -254,8 +255,10 @@ export default {
     position: relative;
     vertical-align: top;
     margin-top: 10px;
+    background: #a9e368;
+    max-width: 76%;
   }
-    .s3-r {
+.s3-r {
     width: 7px;
     height: 7px;
     transform: rotate(-45deg);
@@ -263,9 +266,9 @@ export default {
     border-bottom: 1px solid #ccc;
     position: absolute;
     right: -5px;
-    background-color: white;
-  }
-    .user-head {
+    background-color:#a9e368;
+}
+.user-head {
     background-image: url("../assets/image/userhead.jpg");
     background-size: cover;
     display: inline-block;
@@ -274,9 +277,10 @@ export default {
     border-radius: 50%;
     margin-left: 10px;
     vertical-align: middle;
-  }
+}
 .answer-message {
     text-align: left;
+    overflow: hidden;
 }
 .robot-head {
     background-image: url("../assets/image/icon.png");
@@ -287,10 +291,11 @@ export default {
     border-radius: 50%;
     margin-right: 10px;
     vertical-align: middle;
+    float: left;
 }
 .answer-message-box {
     display: inline-block;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 4px;
     color: #000;
     background-color: #fff;
@@ -300,26 +305,28 @@ export default {
     position: relative;
     vertical-align: top;
     margin-top: 10px;
+    float: left;
+    max-width: 76%;
 }
-  .s3-l {
+.s3-l {
     border: 7px solid rgba(255, 255, 255, 0);
     border-right-color: #fff;
     position: absolute;
     left: -14px;
-  }
-    .banner{
+}
+.banner{
     text-align: center;
-  }
-  .banner>span{
+}
+.banner>span{
     display: inline-block;
     background-color: #ccc;
     color: white;
     font-size: 12px;
     padding: 1px 10px;
     border-radius: 10px;
-  }
+}
 .chatInput{
-    height: 8%;
+    height: 59px;
     width: 100%;
     border-top: 1px solid #A8A8A8;
     padding: 7px;

@@ -8,5 +8,6 @@
     "finishImg":"/static/image/finish.png",
     "activeImg":"/static/image/active.png",
     "vipImg":"/static/image/vip.png",
-    "noThing":"/static/image/no.png"
+    "noThing":"/static/image/no.png",
+    "us":"/static/image/us.jpg"
 }

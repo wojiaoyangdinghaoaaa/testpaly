@@ -23,9 +23,11 @@ import Help from '@/components/Help'
 import InformDetail from '@/components/InformDetail'
 import Service from '@/components/Service'
 import AboultUs from '@/components/AboultUs'
-
-
-
+import Newbie from '@/components/Newbie'
+import FAQ from '@/components/FAQ'
+import CheckTime from '@/components/CheckTime'
+import CheckNoPass from '@/components/CheckNoPass'
+import CheckMoney from '@/components/CheckMoney'
 
 Vue.use(Router)
 
@@ -134,6 +136,31 @@ export default new Router({
       path: '/AboultUs',
       name: 'AboultUs',
       component: AboultUs
+    },
+    {
+      path: '/Newbie',
+      name: 'Newbie',
+      component: Newbie
+    },
+    {
+      path: '/FAQ',
+      name: 'FAQ',
+      component: FAQ
+    },
+    {
+      path: '/CheckTime',
+      name: 'CheckTime',
+      component: CheckTime
+    },
+    {
+      path: '/CheckNoPass',
+      name: 'CheckNoPass',
+      component: CheckNoPass
+    },
+    {
+      path: '/CheckMoney',
+      name: 'CheckMoney',
+      component: CheckMoney
     }
   ]
 })

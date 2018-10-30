@@ -3,32 +3,33 @@
         <div class="headerNav">
             <!-- header部分 -->
             <van-nav-bar
-            title="帮助中心"
+            title="常见问题"
             left-arrow
             @click-left="onClickLeft"
             />
         </div>
         <div class="content">
+            
             <div class='lists'>
 
-                <div class='list' @click="goNewbie">
-                    <span class='listLeft'>新手指引</span>
+                <div class='list' @click="goCheckTime">
+                    <span class='listLeft'>任务审核需要多久？</span>
                     <div class='listRight'>
                         <span></span>
                         <i></i>
                     </div>
                 </div>
 
-                <div class='list' @click="goFAQ">
-                    <span class='listLeft'>常见问题</span>
+                <div class='list' @click="goCheckNoPass">
+                    <span class='listLeft'>任务审核为什么会不通过？</span>
                     <div class='listRight'>
                         <span></span>
                         <i></i>
                     </div>
                 </div>
 
-                <div class='list'>
-                    <span class='listLeft'>联系客服</span>
+                <div class='list'  @click="goCheckMoney">
+                    <span class='listLeft'>提现会多久到账？</span>
                     <div class='listRight'>
                         <span></span>
                         <i></i>
@@ -36,6 +37,7 @@
                 </div>
 
             </div>
+
         </div>
     </div>
 </template>
@@ -50,11 +52,14 @@ export default {
         onClickLeft(){
             this.$router.go(-1);
         },
-        goNewbie(){
-            this.$router.push({path:'/Newbie'});
+        goCheckTime(){
+            this.$router.push({path:'/CheckTime'});
         },
-        goFAQ(){
-            this.$router.push({path:'/FAQ'});
+        goCheckNoPass(){
+            this.$router.push({path:'/CheckNoPass'});
+        },
+        goCheckMoney(){
+            this.$router.push({path:'/CheckMoney'});
         }
     }
 }
