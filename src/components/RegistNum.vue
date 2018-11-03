@@ -25,6 +25,7 @@ import Vue from 'vue';
 Vue.use(NavBar).use(Toast);
 
 export default {
+    inject: ['reload'],
     data () {
         return {
             number:0,
@@ -63,11 +64,17 @@ export default {
             this.number=e.target.value;
         },
         goRegist(){
-            if (this.number>0) {
-                this.$router.push({path:'/Regist',query:{number:this.number}});
+            if(this.number>200){
+                Toast('最大注册数量不能超过200！');
+                this.reload();
             }else{
-                Toast('注册数量不能为空！');
+                if (this.number>0) {
+                    this.$router.push({path:'/Regist',query:{number:this.number}});
+                }else{
+                    Toast('注册数量不能为空！');
+                }
             }
+            
         }
     },
     created () {

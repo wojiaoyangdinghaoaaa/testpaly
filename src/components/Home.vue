@@ -105,11 +105,12 @@
     </div>
 </template>
 <script>
+import {getUserLoginState} from '../api/getData';
 import img from '../../static/json/index.json';
-import { NavBar, NoticeBar, Swipe, SwipeItem} from 'vant';
+import { NavBar, NoticeBar, Swipe, SwipeItem, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(NoticeBar).use(Swipe).use(SwipeItem);
+Vue.use(NavBar).use(NoticeBar).use(Swipe).use(SwipeItem).use(Toast);
 
 export default {
     data () {
@@ -128,6 +129,16 @@ export default {
         goDetail(){
             this.$router.push({path:'/Detail'});
         }
+    },
+    created () {
+        getUserLoginState().then(res=>{
+            console.log(res.data);
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }
+
+        })
     }
     
 }

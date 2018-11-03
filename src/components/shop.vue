@@ -1,5 +1,5 @@
 <template>
-    <div class="com-upload-img">
+    <!-- <div class="com-upload-img">
         <div class="img_group">
             <div class="img_box" v-if="allowAddImg">
                 <input type="file" accept="image/*" multiple="multiple" @change="changeImg($event)">
@@ -9,18 +9,23 @@
              <div class="img_show_box">
                 <img :src="item" alt="">
                 <i class="img_delete" @click="deleteImg(index)"></i>
-                <!-- <i class="img_delete" @click="imgArr.splice(index,1)"></i> -->
+                <i class="img_delete" @click="imgArr.splice(index,1)"></i> 
             </div>
         </div>
         </div>
+    </div> -->
+    <div class="cantain">
+        <img :src="hopeImg">
     </div>
 </template>
  
 <script>
+import img from '../../static/json/index.json';
 export default {
     name:'ComUpLoad',
     data () {
         return {
+            hopeImg:img.hopeImg,
             imgData:'',
             imgArr:[],
             imgSrc:'',
@@ -94,3 +99,15 @@ deleteImg: function(index){
     },
 }
 </script>
+
+<style scoped>
+.cantain{
+    width: 100%;
+    background: #f6f6f6;
+}
+.cantain img{
+    width: 100%;
+    margin-top: 42%;
+}
+</style>
+

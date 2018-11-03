@@ -13,7 +13,7 @@
       <div class="inputBig">
         <div class="inputUser">
           <i class="iconfont">&#xe61a;</i>
-          <input type="text" placeholder="用户名/手机号" v-model="userName">
+          <input type="text" placeholder="用户名/ID" v-model="userName">
         </div>
         <div class="inputPass">
           <i class="iconfont">&#xe654;</i>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import {login} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, Button, Dialog, Toast} from 'vant';
 import Vue from 'vue';
@@ -52,27 +53,41 @@ export default{
           userName:"",
           userPass:"",
           buttonState:true,
-          content: '为保证用户安全，不支持该操作。如需修改，请联系代理商或运营中心！'
+          content: '为保证用户安全，不支持该操作。如需修改，请联系代理商或运营中心！',
+          limit:{}
         }
     },
     methods: {
       loginHome(){
         this.buttonState=false;
+        this.limit={
+            loginName:this.userName,
+            password:this.userPass
+        }
+
         if(this.userName=="" || this.userPass==""){
             Toast('用户名或密码不能为空！');
             this.reload();
             this.buttonState=true;
         }else{
-          setTimeout(()=>{
-            if (this.userName==15058665861 && this.userPass=="admin") {
-              this.$router.push({path:'/Tab'});
-              this.buttonState=true;
-            }else if(this.userName!=15058665861 || this.userPass!="admin"){
-                Toast('用户名或密码错误！');
-                this.reload();
-                this.buttonState=true;
-            }
-          },3000)
+          if (this.userPass.length<6 || this.userName.length<3) {
+            Toast('用户名或密码格式有误！');
+            this.buttonState=true;
+          }else{
+              login(this.limit).then(res=>{
+                    setTimeout(()=>{
+                        if (res.data.success==true) {
+                              Toast('登录成功!');
+                              this.$router.push({path:'/Tab'});
+                              this.buttonState=true;
+                        }else{
+                            Toast(res.data.message);
+                            this.reload();
+                            this.buttonState=true;
+                        }
+                    },1000);
+                });
+          }
         }
       },
       forgetPass(){

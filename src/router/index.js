@@ -28,6 +28,8 @@ import FAQ from '@/components/FAQ'
 import CheckTime from '@/components/CheckTime'
 import CheckNoPass from '@/components/CheckNoPass'
 import CheckMoney from '@/components/CheckMoney'
+import AddressAdd from '@/components/AddressAdd'
+
 
 Vue.use(Router)
 
@@ -160,7 +162,12 @@ export default new Router({
     {
       path: '/CheckMoney',
       name: 'CheckMoney',
-      component: CheckMoney
+      component: CheckMoney 
+    },
+    {
+      path: '/AddressAdd',
+      name: 'AddressAdd',
+      component: AddressAdd
     }
   ]
 })
