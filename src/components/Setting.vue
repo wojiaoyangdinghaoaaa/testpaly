@@ -12,23 +12,23 @@
             <div>
                 <div class='userInfo'>
                     <span class='userInfoLeft'>用户名</span>
-                    <span class='userInfoRight'>小怪兽123</span>
+                    <span class='userInfoRight'>{{userInfo.username}}</span>
                 </div>
                 <div class='userInfo'>
                     <span class='userInfoLeft'>真实姓名</span>
-                    <span class='userInfoRight'>杨哈哈</span>
+                    <span class='userInfoRight'>{{userInfo.realName}}</span>
                 </div>
                 <div class='userInfo'>
                     <span class='userInfoLeft'>手机号</span>
-                    <span class='userInfoRight'>15058665861</span>
+                    <span class='userInfoRight'>{{userInfo.tel}}</span>
                 </div>
                 <div class='userInfo'>
                     <span class='userInfoLeft'>提现支付宝姓名</span>
-                    <span class='userInfoRight'>杨哈哈</span>
+                    <span class='userInfoRight'>{{userInfo.alipayRealName}}</span>
                 </div>
                 <div class='userInfo'>
                     <span class='userInfoLeft'>提现支付宝账户</span>
-                    <span class='userInfoRight'>15058665861</span>
+                    <span class='userInfoRight'>{{userInfo.alipayAccount}}</span>
                 </div>
             </div>
             <div class='userInfoBtn' @click='goLogin'>
@@ -39,20 +39,49 @@
     </div>
 </template>
 <script>
-import { NavBar} from 'vant';
+import {getUserLoginState, logoutUserLogin} from '../api/getData';
+import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar);
+Vue.use(NavBar).use(Toast);
 
 
 export default {
+    data () {
+        return {
+            userInfo:''
+        }
+    },
     methods: {
         onClickLeft(){
             this.$router.go(-1);
         },
         goLogin(){
-            this.$router.push({path:'/'});
+            // this.$router.push({path:'/'});
+            var limit={
+                id:Number(this.$cookie.get('userId'))
+            }
+            logoutUserLogin(limit).then(res=>{
+                if(res.data.success==true){
+                    this.$router.push({path:'/'});
+                    Toast('退出成功！');
+                }
+            })
         }
+    },
+    created () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }else if(res.data.success==true){
+                this.userInfo=res.data.data;
+            }
+
+        })
     }
 }
 </script>

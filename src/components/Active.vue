@@ -47,10 +47,11 @@
     </div>
 </template>
 <script>
-import { NavBar, Circle} from 'vant';
+import {getUserLoginState} from '../api/getData';
+import { NavBar, Circle, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Circle);
+Vue.use(NavBar).use(Circle).use(Toast);
 
 export default {
   data () {
@@ -68,7 +69,19 @@ export default {
     goHome(){
         this.$router.push({path:'/Tab'});
     }
-  }
+  },
+    created () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }
+
+        })
+    }
 }
 </script>
 <style scoped>

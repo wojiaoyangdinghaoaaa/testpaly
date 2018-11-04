@@ -168,6 +168,14 @@ export default new Router({
       path: '/AddressAdd',
       name: 'AddressAdd',
       component: AddressAdd
+    },
+    {
+        path: '*',
+        redirect: '/'
     }
+    
   ]
 })
+
+
+

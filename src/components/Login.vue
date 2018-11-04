@@ -77,6 +77,7 @@ export default{
               login(this.limit).then(res=>{
                     setTimeout(()=>{
                         if (res.data.success==true) {
+                              this.$cookie.set('userId', res.data.data.id, 365);
                               Toast('登录成功!');
                               this.$router.push({path:'/Tab'});
                               this.buttonState=true;
@@ -104,6 +105,9 @@ export default{
     },
     mounted () {
       
+    },
+    created () {
+      this.$cookie.delete('userId');
     }
 }
 </script>

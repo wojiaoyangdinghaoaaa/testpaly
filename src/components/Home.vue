@@ -131,8 +131,10 @@ export default {
         }
     },
     created () {
-        getUserLoginState().then(res=>{
-            console.log(res.data);
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {
                 this.$router.push({path:'/'});
                 Toast('登录过期，请重新登录！');

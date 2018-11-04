@@ -70,11 +70,12 @@
     </div>
 </template>
 <script>
+import {getUserLoginState} from '../api/getData';
 import img from '../../static/json/index.json';
-import { NavBar, Tab, Tabs, List, PullRefresh} from 'vant';
+import { NavBar, Tab, Tabs, List, PullRefresh, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Tab).use(Tabs).use(List).use(PullRefresh);
+Vue.use(NavBar).use(Tab).use(Tabs).use(List).use(PullRefresh).use(Toast);
 
 export default {
     data() {
@@ -128,6 +129,18 @@ export default {
         goInformDetail(){
             this.$router.push({path:'/InformDetail'});
         }
+    },
+    created () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }
+
+        })
     }
 }
 </script>

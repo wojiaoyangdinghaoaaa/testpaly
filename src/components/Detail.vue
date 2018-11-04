@@ -106,10 +106,11 @@
     </div>
 </template>
 <script>
-import { NavBar, Dialog} from 'vant';
+import {getUserLoginState} from '../api/getData';
+import { NavBar, Dialog, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Dialog);
+Vue.use(NavBar).use(Dialog).use(Toast);
 
 
 export default {
@@ -185,6 +186,18 @@ export default {
             // }
             // window.location.href='http://www.9game.cn/game/downs_828511_2.html?ch=SO_4'
         }
+    },
+    created () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }
+
+        })
     }
 }
 </script>

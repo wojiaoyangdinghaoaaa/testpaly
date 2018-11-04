@@ -49,10 +49,11 @@
     </div>
 </template>
 <script>
-import { NavBar, AddressList} from 'vant';
+import {getUserLoginState} from '../api/getData';
+import { NavBar, AddressList, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(AddressList);
+Vue.use(NavBar).use(AddressList).use(Toast);
 
 export default {
     data () {
@@ -67,6 +68,18 @@ export default {
         goAddressAdd(){
             this.$router.push({path:'/AddressAdd'});
         }
+    },
+    created () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }
+
+        })
     }
 }
 </script>

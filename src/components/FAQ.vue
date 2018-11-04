@@ -42,10 +42,11 @@
     </div>
 </template>
 <script>
-import { NavBar} from 'vant';
+import {getUserLoginState} from '../api/getData';
+import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar);
+Vue.use(NavBar).use(Toast);
 
 export default {
     methods: {
@@ -61,6 +62,18 @@ export default {
         goCheckMoney(){
             this.$router.push({path:'/CheckMoney'});
         }
+    },
+    created () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==false) {
+                this.$router.push({path:'/'});
+                Toast('登录过期，请重新登录！');
+            }
+
+        })
     }
 }
 </script>
