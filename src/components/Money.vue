@@ -10,7 +10,7 @@
             <div class='momeyBig'>
                 <div class='momeyNum'>
                     您的余额
-                    <span>0.00</span>
+                    <span>{{data.balance}}.00</span>
                     元，最低提现额度为
                     <span>20</span>
                     元，
@@ -18,7 +18,7 @@
                 <div class='momeyInput'>
                     <div class='momeyInputLeft'>提现金额</div>
                     <div class='momeyInputRight'>
-                        <input type='text' placeholder-class="psection" placeholder="请输入数值"/>
+                        <input type='text' placeholder-class="psection" placeholder="请输入数值" v-model="momeyNum"/>
                         <span>元</span>
                     </div>
                 </div>
@@ -29,19 +29,67 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getUserInforn,userPutMomey} from '../api/getData';
 import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
 
 Vue.use(NavBar).use(Toast);
 export default {
+    data () {
+        return {
+            data:'',
+            momeyNum:''
+        }
+    },
     methods: {
         onClickLeft(){
             this.$router.go(-1);
         },
         getMomey(){
-            Toast('提现成功!');
+            if (this.momeyNum=='') {
+                Toast('提现金额不能为空!');
+            }else{
+                if(this.momeyNum<20){
+                    Toast('最低提现额度为20元');
+                }else{
+                    if (this.data.balance<this.momeyNum) {
+                        Toast('余额不足，无法提现!');
+                    }else{
+                        var  limit={
+                            userId:Number(this.$cookie.get('userId')),
+                            money:this.momeyNum
+                        }
+                        userPutMomey(limit).then(res=>{
+                            if (res.data.success==true) {
+                                this.momeyNum='';
+                                Toast('提现成功!');
+                                var limit={
+                                    id:Number(this.$cookie.get('userId'))
+                                }
+                                this.getInforn(limit)
+                            }else{
+                                Toast(res.data.message);
+                            }
+                        })
+                    }
+                }
+            }
+        },
+        getInforn(limit){
+            getUserInforn(limit).then(res=>{
+                if (res.data.success==true) {
+                    this.data=res.data.data;
+                }else{
+                    Toast('加载失败，请刷新后重新加载!');
+                }
+            })  
         }
+    },
+    mounted () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        this.getInforn(limit);
     },
     created () {
         var limit={

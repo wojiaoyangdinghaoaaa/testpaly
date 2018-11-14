@@ -4,7 +4,7 @@
         <div class='titleImgBig'>
             <img :src="bgImgUrl" class='titleImg'/>
             <i class="setIcon" @click="goSetting"></i>
-            <div class="userName">小怪兽123</div>
+            <div class="userName">{{data.username}}</div>
             <div class='titleCard'>
                 <div @click="goMoney">
                     <img :src="momeyImgUrl"/>
@@ -103,6 +103,7 @@ Vue.use(NavBar).use(Toast);
 export default {
     data () {
         return {
+            data:'',
             Img:img.images,
             bgImgUrl:img.bgImg,
             momeyImgUrl:img.momeyImg,
@@ -154,6 +155,7 @@ export default {
             id:Number(this.$cookie.get('userId'))
         }
         getUserLoginState(limit).then(res=>{
+            this.data=res.data.data;
             if (res.data.success==false) {
                 this.$router.push({path:'/'});
                 Toast('登录过期，请重新登录！');

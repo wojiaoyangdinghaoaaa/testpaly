@@ -17,27 +17,20 @@
                         :finished="finished"
                         @load="onLoad"
                         >   
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
+                            <div class="list"  v-for="(list,index) in lists" :key="index">
+                                <p class="taskInfo">
+                                    <img :src="list.task.picture">
+                                    <span class="taskName">{{list.task.title}}</span>
+                                    <span class="taskPrice">+{{list.task.price}}.00</span>
+                                </p>
+                                <p>领取时间:&nbsp;&nbsp;{{list.takeTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
                             </div>
 
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                            </div>
-
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                            </div>
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
                             
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
@@ -49,34 +42,22 @@
                         @load="onLoad"
                         >   
 
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
+                            <div class="list"   v-for="(list,index) in lists" :key="index">
+                                <p class="taskInfo">
+                                    <img :src="list.task.picture">
+                                    <span class="taskName">{{list.task.title}}</span>
+                                    <span class="taskPrice">+{{list.task.price}}.00</span>
+                                </p>
+                                <p>领取时间:&nbsp;&nbsp;{{list.takeTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <p>提交时间:&nbsp;&nbsp;{{list.submitTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <p>回复内容:&nbsp;&nbsp;{{list.submitContent}}</p>
                             </div>
 
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                            </div>
-
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                            </div>
-
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
@@ -87,38 +68,24 @@
                         :finished="finished"
                         @load="onLoad"
                         >   
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
+                            <div class="list"   v-for="(list,index) in lists" :key="index">
+                                <p class="taskInfo">
+                                    <img :src="list.task.picture">
+                                    <span class="taskName">{{list.task.title}}</span>
+                                    <span class="taskPrice">+{{list.task.price}}.00</span>
+                                </p>
+                                <p>领取时间:&nbsp;&nbsp;{{list.takeTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <p>提交时间:&nbsp;&nbsp;{{list.submitTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <p>回复内容:&nbsp;&nbsp;{{list.submitContent}}</p>
+                                <p>审核时间:&nbsp;&nbsp;{{list.checkTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
                             </div>
 
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                            </div>
-
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                            </div>
-
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
 
-                            
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
+
                         </van-list>
                     </van-pull-refresh>  
                 </van-tab>
@@ -129,41 +96,24 @@
                         :finished="finished"
                         @load="onLoad"
                         >   
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                                <div @click="aginPush">重新提交</div>
+                            <div class="list"   v-for="(list,index) in lists" :key="index">
+                                <p class="taskInfo">
+                                    <img :src="list.task.picture">
+                                    <span class="taskName">{{list.task.title}}</span>
+                                    <span class="taskPrice">+{{list.task.price}}.00</span>
+                                </p>
+                                <p>领取时间:&nbsp;&nbsp;{{list.takeTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <p>提交时间:&nbsp;&nbsp;{{list.submitTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <p>回复内容:&nbsp;&nbsp;{{list.submitContent}}</p>
+                                <p>审核时间:&nbsp;&nbsp;{{list.checkTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
+                                <div @click="aginPush(list)">重新提交</div>
                             </div>
 
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                                <div @click="aginPush">重新提交</div>
-                            </div>
-
-                            <div class="list">
-                                <p>领取时间:&nbsp;2018-10-25</p>
-                                <p>任务名称:&nbsp;超级玛丽（安卓）第四期</p>
-                                <p>提交时间:&nbsp;2018-10-25</p>
-                                <p>回复内容:&nbsp;九游--彼岸花开--张三三</p>
-                                <p>审核时间:&nbsp;2018-10-25</p>
-                                <div @click="aginPush">重新提交</div>
-                            </div>
-
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
 
-                            
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
                         </van-list>
                     </van-pull-refresh>     
                 </van-tab>
@@ -173,7 +123,7 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getUserTaskList,putReceiveTask} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, Tab, Tabs, List, PullRefresh, Toast} from 'vant';
 import Vue from 'vue';
@@ -188,7 +138,8 @@ export default {
             refreshing: false,
             loading: false,
             finished: true,//false,
-            noThing:img.noThing
+            noThing:img.noThing,
+            status:0,
         };
     },
     methods: {
@@ -197,13 +148,33 @@ export default {
         },
         onClick(){
             if (this.active==0) {
-                console.log("你0")
+                this.status=0;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    status:this.status
+                }
+                this.getList(limit);
             }else if (this.active==1) {
-                console.log("你1")
+                this.status=1;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    status:this.status
+                }
+                this.getList(limit);
             }else if (this.active==2) {
-                console.log("你2")
+                this.status=2;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    status:this.status
+                }
+                this.getList(limit);
             }else if (this.active==3) {
-                console.log("你3")
+                this.status=3;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    status:this.status
+                }
+                this.getList(limit);
             }
         },
         onLoad() {
@@ -219,19 +190,53 @@ export default {
             // }, 5000);
         },
         onRefresh() {
-            // setTimeout(() => {
-            //     this.lists = [];
-            //     this.finished = false;
-            //     this.refreshing = false;
-            //     for (let i = 0; i < 15; i++) {
-            //         const text = this.lists.length + 1;
-            //         this.lists.push(text);
-            //     }
-            // }, 1000);
+            setTimeout(() => {
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    status:this.status
+                }
+                this.getList(limit);
+                Toast('刷新成功!');
+            }, 1000);
         },
-        aginPush(){
-            Toast('提交成功！');
+        aginPush(list){
+            // Toast('提交成功！');
+            var userid=list.userId;
+            var taskid=list.taskId;
+            var limit={
+                userId:userid,
+                taskId:taskid,
+            }
+                putReceiveTask(limit).then(res=>{
+                    if(res.data.success==true){
+                        Toast('提交成功！');
+                        var limit={
+                            userId:Number(this.$cookie.get('userId')),
+                            status:3
+                        }
+                        this.getList(limit);  
+                    }else{
+                        Toast(res.data.message);
+                    }
+                })
+        },
+        getList(limit){
+            getUserTaskList(limit).then(res=>{
+                if (res.data.success==true) {
+                    this.lists=res.data.data;
+                    this.refreshing = false;
+                }else{
+                    Toast(res.data.message);
+                }
+            })
         }
+    },
+    mounted () {
+      var limit={
+        userId:Number(this.$cookie.get('userId')),
+        status:0
+      }
+      this.getList(limit);  
     },
     created () {
         var limit={
@@ -285,7 +290,7 @@ export default {
 .list div{
     position: absolute;
     right: 0;
-    top: 38%;
+    top: 50%;
     padding: 5px 10px;
     color: #fff;
     border-radius: 6px;
@@ -305,6 +310,33 @@ export default {
     font-size: 14px;
     color: #A8A8A8;
     margin-top: 10px;
+}
+.taskInfo{
+    width: 100%;
+    overflow: hidden;
+    line-height: 40px;
+}
+.taskInfo img{
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+.taskInfo .taskName{
+    float: left;
+    font-size: 14px;
+    padding-top: 2px;
+    box-sizing: border-box;
+    font-weight: 600;
+    margin-left: 18px;
+    color: #000;
+}
+.taskInfo .taskPrice{
+    float: right;
+    color: #fe433a;
+    font-size: 14px;
+    padding-top: 2px;
+    box-sizing: border-box;
+    font-weight: 600;
 }
 </style>
 

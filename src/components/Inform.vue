@@ -17,32 +17,24 @@
                         :finished="finished"
                         @load="onLoad"
                         >   
-                            <div class="listAll" @click="goInformDetail">
+                            <div class="listAll" v-for="(list,index) in lists" :key="index" @click="goInformDetail(list.id)">
                                 <div class='list'>
-                                    <span class='listMessage'>暂停服务公告</span>
-                                    <span class='listTime'>2018-04-18</span>
+                                    <span class='listMessage'>{{list.title}}</span>
+                                    <span class='listTime'>{{list.createTime*1000 | datefmt('YYYY-MM-DD')}}</span>
                                 </div>
                                 <div class='listTitle'>
-                                    由于系统维护，暂停系统的开放功能！
+                                    {{list.title}}
                                 </div>
                             </div>
+                            <!-- <div  v-if="lists.length==informLength">没有更多数据了</div> -->
 
-                            <div class="listAll">
-                                <div class='list'>
-                                    <span class='listMessage'>暂停服务公告</span>
-                                    <span class='listTime'>2018-04-18</span>
-                                </div>
-                                <div class='listTitle'>
-                                    由于系统维护，暂停系统的开放功能！
-                                </div>
-                            </div>
 
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
                             
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
+                            
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
@@ -54,12 +46,23 @@
                         @load="onLoad"
                         >   
 
-                            <div class="noThingBig">
-                                <img :src="noThing" />
-                                <div>暂时没有活动~</div>
+                            <div class="listAll" v-for="(list,index) in lists" :key="index" @click="goInformDetail(list.id)">
+                                <div class='list'>
+                                    <span class='listMessage'>{{list.title}}</span>
+                                    <span class='listTime'>{{list.createTime*1000 | datefmt('YYYY-MM-DD')}}</span>
+                                </div>
+                                <div class='listTitle'>
+                                    {{list.title}}
+                                </div>
                             </div>
+                            <!-- <div  v-if="lists.length==informLength">没有更多数据了</div> -->
 
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
+
+                            <div class="noThingBig"   v-if="lists.length<1">
+                                <img :src="noThing" />
+                                <div>暂时没有记录~</div>
+                            </div>
+                            
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
@@ -70,7 +73,7 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getInform} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, Tab, Tabs, List, PullRefresh, Toast} from 'vant';
 import Vue from 'vue';
@@ -81,6 +84,8 @@ export default {
     data() {
         return {
             active:0,
+            type:1,
+            limit:'',
             lists: [],
             refreshing: false,
             loading: false,
@@ -94,13 +99,19 @@ export default {
         },
         onClick(){
             if (this.active==0) {
-                console.log("你0")
+                this.type=1;
+                this.limit={
+                    status:1,
+                    type:this.type
+                }
+                this.getList(this.limit);
             }else if (this.active==1) {
-                console.log("你1")
-            }else if (this.active==2) {
-                console.log("你2")
-            }else if (this.active==3) {
-                console.log("你3")
+                this.type=2;
+                this.limit={
+                    status:1,
+                    type:this.type
+                }
+                this.getList(this.limit);
             }
         },
         onLoad() {
@@ -117,18 +128,45 @@ export default {
         },
         onRefresh() {
             // setTimeout(() => {
-            //     this.lists = [];
-            //     this.finished = false;
-            //     this.refreshing = false;
-            //     for (let i = 0; i < 15; i++) {
-            //         const text = this.lists.length + 1;
-            //         this.lists.push(text);
-            //     }
+                // this.lists = [];
+                // this.finished = false;
+                // this.refreshing = false;
+                // for (let i = 0; i < 15; i++) {
+                //     const text = this.lists.length + 1;
+                //     this.lists.push(text);
+                // }
             // }, 1000);
+
+            setTimeout(() => {
+                this.limit={
+                    status:1,
+                    type:this.type
+                }
+                this.getList(this.limit);
+                Toast('刷新成功!');
+            }, 1000);
+
         },
-        goInformDetail(){
-            this.$router.push({path:'/InformDetail'});
+        goInformDetail(id){
+            this.$router.push({path:'/InformDetail',query:{id:id}});
+        },
+        getList(limit){
+            getInform(limit).then(res=>{
+                if (res.data.success==true) {
+                    this.lists=res.data.data;
+                    this.refreshing = false;
+                }else{
+                    Toast(res.data.message);
+                }
+            })
         }
+    },
+    mounted () {
+        this.limit={
+            status:1,
+            type:1
+        }
+        this.getList(this.limit);
     },
     created () {
         var limit={

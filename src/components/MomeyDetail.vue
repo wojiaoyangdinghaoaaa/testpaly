@@ -17,52 +17,23 @@
                         :finished="finished"
                         @load="onLoad"
                         >   
-                            <div class="list">
+                            <div class="list"  v-for="(list,index) in lists" :key="index">
                                 <div class="listLeft">
-                                    <p class="listLeftName">任务收益</p>
-                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                    <p class="listLeftName">{{list.typeName}}</p>
+                                    <p class="listLeftTime">{{list.createTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
                                 </div>
                                 <div class="listRight">
-                                    <p class="listRightAdd">+4.00</p>
+                                    <p class="listRightAdd" v-if="list.type==1">+{{list.money}}.00</p>
+                                    <p class="listRightSub" v-else-if="list.type==0">-{{list.money}}.00</p>
                                 </div> 
                             </div>
 
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">余额提现</p>
-                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightSub">-50.00</p>
-                                </div> 
-                            </div>
-
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">任务收益</p>
-                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightAdd">+3.00</p>
-                                </div> 
-                            </div>
-
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">余额提现</p>
-                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightSub">-100.00</p>
-                                </div> 
-                            </div>
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
-                            
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
+                            </div>
+
+
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
@@ -74,42 +45,22 @@
                         @load="onLoad"
                         >   
 
-                            <div class="list">
+                            <div class="list"  v-for="(list,index) in lists" :key="index">
                                 <div class="listLeft">
-                                    <p class="listLeftName">任务收益</p>
-                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                    <p class="listLeftName">{{list.typeName}}</p>
+                                    <p class="listLeftTime">{{list.createTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
                                 </div>
                                 <div class="listRight">
-                                    <p class="listRightAdd">+4.00</p>
+                                    <p class="listRightAdd">+{{list.money}}.00</p>
                                 </div> 
                             </div>
 
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">任务收益</p>
-                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightAdd">+3.00</p>
-                                </div> 
-                            </div>
-
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">任务收益</p>
-                                    <p class="listLeftTime">2018-10-27 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightAdd">+5.00</p>
-                                </div> 
-                            </div>
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
+
                         </van-list>
                     </van-pull-refresh>
                 </van-tab>
@@ -122,43 +73,22 @@
                         >   
 
 
-                            <div class="list">
+                            <div class="list"  v-for="(list,index) in lists" :key="index">
                                 <div class="listLeft">
-                                    <p class="listLeftName">余额提现</p>
-                                    <p class="listLeftTime">2018-10-26 18:14:27</p>
+                                    <p class="listLeftName">{{list.typeName}}</p>
+                                    <p class="listLeftTime">{{list.createTime*1000 | datefmt('YYYY-MM-DD HH:mm:ss')}}</p>
                                 </div>
                                 <div class="listRight">
-                                    <p class="listRightSub">-50.00</p>
+                                    <p class="listRightSub">-{{list.money}}.00</p>
                                 </div> 
                             </div>
 
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">余额提现</p>
-                                    <p class="listLeftTime">2018-10-24 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightSub">-100.00</p>
-                                </div> 
-                            </div>
-
-                            <div class="list">
-                                <div class="listLeft">
-                                    <p class="listLeftName">余额提现</p>
-                                    <p class="listLeftTime">2018-10-27 18:14:27</p>
-                                </div>
-                                <div class="listRight">
-                                    <p class="listRightSub">-150.00</p>
-                                </div> 
-                            </div>
-
-                            <!-- <div class="noThingBig">
+                            <div class="noThingBig"   v-if="lists.length<1">
                                 <img :src="noThing" />
                                 <div>暂时没有记录~</div>
-                            </div> -->
+                            </div>
 
-                            
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
+
                         </van-list>
                     </van-pull-refresh>  
                 </van-tab>
@@ -178,7 +108,6 @@
                             </div>
 
                             
-                            <!-- <div  v-if="list.length==45">没有更多数据了</div> -->
                         </van-list>
                     </van-pull-refresh>     
                 </van-tab>
@@ -188,7 +117,7 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getMomeyDetail} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, Tab, Tabs, List, PullRefresh, Toast} from 'vant';
 import Vue from 'vue';
@@ -203,7 +132,8 @@ export default {
             refreshing: false,
             loading: false,
             finished: true,//false,
-            noThing:img.noThing
+            noThing:img.noThing,
+            type:''
         };
     },
     methods: {
@@ -212,11 +142,26 @@ export default {
         },
         onClick(){
             if (this.active==0) {
-                console.log("你0")
+                this.type=null;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    type:null
+                }
+                this.getList(limit);  
             }else if (this.active==1) {
-                console.log("你1")
+                this.type=1;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    type:this.type
+                }
+                this.getList(limit);
             }else if (this.active==2) {
-                console.log("你2")
+                this.type=0;
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    type:this.type
+                }
+                this.getList(limit);
             }else if (this.active==3) {
                 console.log("你3")
             }
@@ -234,16 +179,31 @@ export default {
             // }, 5000);
         },
         onRefresh() {
-            // setTimeout(() => {
-            //     this.lists = [];
-            //     this.finished = false;
-            //     this.refreshing = false;
-            //     for (let i = 0; i < 15; i++) {
-            //         const text = this.lists.length + 1;
-            //         this.lists.push(text);
-            //     }
-            // }, 1000);
+            setTimeout(() => {
+                var limit={
+                    userId:Number(this.$cookie.get('userId')),
+                    type:this.type
+                }
+                this.getList(limit);
+                Toast('刷新成功!');
+            }, 1000);
+        },
+        getList(limit){
+            getMomeyDetail(limit).then(res=>{
+                if (res.data.success==true) {
+                    this.lists=res.data.data.list;
+                    this.refreshing = false;
+                }else{
+                    Toast(res.data.message);
+                }
+            })
         }
+    },
+    mounted () {
+        var limit={
+            userId:Number(this.$cookie.get('userId')),
+        }
+        this.getList(limit);  
     },
     created () {
         var limit={

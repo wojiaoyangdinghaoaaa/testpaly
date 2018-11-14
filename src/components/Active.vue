@@ -32,13 +32,13 @@
                 :text="remainCurrentRate.toFixed(0) + '%'"
             />
             <div class="inform">
-                <div class="informFinish">完成活跃度:1</div>
-                <div class="informRemain">剩余活跃度:1</div>
+                <div class="informFinish">完成活跃度:{{number}}</div>
+                <div class="informRemain">剩余活跃度:{{2-number}}</div>
             </div>
-            <div class="bottom">
+            <div class="bottom" v-if="number!=2">
                 <div class="text">
                     您当日还可完成
-                    <span>1</span>
+                    <span>{{2-number}}</span>
                     个任务,快去看看吧
                 </div>
                 <div class="btn" @click="goHome">去看看</div>
@@ -47,7 +47,7 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getUserActivity} from '../api/getData';
 import { NavBar, Circle, Toast} from 'vant';
 import Vue from 'vue';
 
@@ -56,10 +56,11 @@ Vue.use(NavBar).use(Circle).use(Toast);
 export default {
   data () {
       return {
-          finishRate:50,
-          remainRate: 50,
+          finishRate:0,
+          remainRate: 0,
           finishCurrentRate: 0,
-          remainCurrentRate: 0
+          remainCurrentRate: 0,
+          number:''
       }
   },
   methods: {
@@ -69,6 +70,29 @@ export default {
     goHome(){
         this.$router.push({path:'/Tab'});
     }
+  },
+  mounted () {
+        var limit={
+            userId:Number(this.$cookie.get('userId'))
+        }
+      getUserActivity(limit).then(res=>{
+          if (res.data.success==true) {
+              this.number=res.data.data;
+              if(this.number==0){
+                  this.finishRate=0;
+                  this.remainRate=100;
+              }else if(this.number==1){
+                  this.finishRate=50;
+                  this.remainRate=50;
+              }else if(this.number==2){
+                  this.finishRate=100;
+                  this.remainRate=0;
+              }
+
+          }else{
+              Toast('加载失败，请刷新后重新加载！');
+          }
+      })
   },
     created () {
         var limit={

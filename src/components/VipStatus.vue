@@ -10,12 +10,12 @@
         <div class='containBig'>
             <div class='containTop'>
                 <div class='cardInfo'>
-                    <div class='cardName'>游天下</div>
+                    <div class='cardName'>乐游暇</div>
                     <div class='cardClass'>
                         <span>会员等级:</span>
                         <span>普通</span>
                     </div>
-                    <div class='cardId'>会员ID:123456</div>
+                    <div class='cardId'>会员ID:{{data.id}}</div>
                 <div  class="cardImg">
                     <img :src="Img"/>
                 </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class='containBottomNum'>
                     <div>余额(元)</div>
-                    <div class='containBottomNumber'>100.00</div>
+                    <div class='containBottomNumber'>{{data.balance}}.00</div>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getUserInforn} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
@@ -74,6 +74,7 @@ export default {
     data () {
         return {
             Img:img.images,
+            data:''
         }
     },
     methods: {
@@ -88,7 +89,22 @@ export default {
         },
         goUpgrade(){
             this.$router.push({path:'/Upgrade'});
+        },
+        getInforn(limit){
+            getUserInforn(limit).then(res=>{
+                if (res.data.success==true) {
+                    this.data=res.data.data;
+                }else{
+                    Toast('加载失败，请刷新后重新加载!');
+                }
+            })  
         }
+    },
+    mounted () {
+        var limit={
+            id:Number(this.$cookie.get('userId'))
+        }
+        this.getInforn(limit);
     },
     created () {
         var limit={

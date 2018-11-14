@@ -4,8 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueCookie from 'vue-cookie'
+import moment from 'moment' 
 
 Vue.use(VueCookie);
+
+Vue.filter('datefmt',function(input,fmtstring){       //转换时间戳
+  
+  return moment(input).format(fmtstring)
+  
+});
 
 Vue.config.productionTip = false
 

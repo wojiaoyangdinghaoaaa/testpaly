@@ -11,29 +11,58 @@
         <div class="content">
             <div class="questionBig">
                 <b>您的问题或建议:</b>
-                <textarea name="question" cols="45" rows="10" placeholder="您的意见或建议..."></textarea>
+                <textarea name="question" cols="45" rows="10" v-model="feedback" placeholder="您的意见或建议..."></textarea>
                 <b>您的联系方式:</b>
-                <input type="text" placeholder="输入电话号码">
-                <input type="text" placeholder="输入邮箱地址">
+                <input type="text" v-model="phone" placeholder="输入电话号码">
+                <input type="text" v-model="email" placeholder="输入邮箱地址">
                 <p>留下您的联系方式，以便我们了解问题后及时反馈结果，紧急问题请联系客服。</p>
                 <b>联系我们:</b>
-                <span>关注公众号"游天下",联系在线客服</span>
+                <span>关注公众号"乐游暇",联系在线客服</span>
             </div>
-            <div class="btn">提交</div>
+            <div class="btn" @click="saveFeedback">提交</div>
         </div>
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,setFeedback} from '../api/getData';
 import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
 
 Vue.use(NavBar).use(Toast);
 
 export default {
+    data () {
+        return {
+            id:'',
+            feedback:'',
+            phone:'',
+            email:'',
+            limit:''
+        }
+    },
     methods: {
         onClickLeft(){
             this.$router.go(-1);
+        },
+        saveFeedback(){
+            if (this.feedback!='' && this.phone!='' && this.email!='') {
+                this.limit={
+                    userId:this.id,
+                    content:this.feedback,
+                    tel:this.phone,
+                    email:this.email
+                }
+                setFeedback(this.limit).then(res=>{
+                    if (res.data.success==true) {
+                        Toast('反馈意见提交成功！');
+                        this.$router.push({path:'/'});
+                    }else{
+                        Toast(res.data.message);
+                    }
+                })
+            }else{
+                Toast('数据提交不能为空！');
+            }
         }
     },
     created () {
@@ -44,6 +73,8 @@ export default {
             if (res.data.success==false) {
                 this.$router.push({path:'/'});
                 Toast('登录过期，请重新登录！');
+            }else{
+                this.id=res.data.data.id;
             }
 
         })

@@ -107,7 +107,7 @@ export default {
   name: 'Chat',
   data: function () {
     return {
-      WebKey: '2045#012faa4d-74ac-4721-8758-39d657703f6e',
+      WebKey: '2193#e49cd925-56fc-4d5c-ab42-d856defae3ca',
       sendstr: '',
       messageList: [],
       lastTime: false,

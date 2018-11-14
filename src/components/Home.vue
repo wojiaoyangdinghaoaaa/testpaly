@@ -5,11 +5,15 @@
             <van-notice-bar
             :text="scrollspan"
             :left-icon="hornUrl"
+            @click="goInformDetail"
             />
             <!-- 轮播图 -->
             <van-swipe :autoplay="5000">
                 <van-swipe-item  v-for="(img, index) in imgs" :key="index">
-                    <img :src="img"/>
+                    <a :href="img.url">
+                        <img :src="img.imgAddress"/>
+                    </a>
+                    
                 </van-swipe-item>
             </van-swipe>
             <!-- 任务情况 -->
@@ -17,21 +21,21 @@
                 <div>
                     <div class='taskspan'>
                         <div>总人气</div>
-                        <div class='taskNum'>119153</div>
+                        <div class='taskNum'>{{indexNum.userCount}}</div>
                     </div>
                     <i class="taskIcon peopleIcon"></i>
                 </div>
                 <div>
                     <div class='taskspan'>
                         <div>已发布</div>
-                        <div class='taskNum'>89765</div>
+                        <div class='taskNum'>{{indexNum.taskCount}}</div>
                     </div>
                     <i class="taskIcon issueIcon"></i>
                 </div>
                 <div>
                     <div class='taskspan'>
                         <div>已完成</div>
-                        <div class='taskNum'>3699872</div>
+                        <div class='taskNum'>{{indexNum.finishCount}}</div>
                     </div>
                     <i class="taskIcon finishIcon"></i>
                 </div>
@@ -42,26 +46,28 @@
         
         <div class="list">
             <!-- 任务列表 -->
-            <div class='taskList' @click="goDetail">
+            <div class='taskList' v-for="(list,index) in lists" :key="index" @click="goDetail(list.id)" >
                 <div class='taskListStatus'>
-                    <img src='http://img5.imgtn.bdimg.com/it/u=3719079994,1913545685&fm=26&gp=0.jpg' class='taskListImg'/>
+                    <img :src='list.picture' class='taskListImg'/>
                     <div class='taskListInfo'>
                         <div class='taskListName'>
-                            超级玛丽（安卓）第四期
+                            <!-- 超级玛丽（安卓）第四期 -->
+                            {{list.title}}
                         </div>
                         <div class='taskListNember'>
-                            <span>已抢28327份</span>
-                            <span>剩余71672份</span>
+                            <span>已抢{{list.num}}份</span>
+                            <span>剩余{{list.total}}份</span>
                         </div>
                     </div>
                 </div>
                 <div class='taskListNum'>
-                    <div class='taskListMomey'>+4.00元</div>
-                    <div class='taskListState'>任务进行中</div>
+                    <div class='taskListMomey'>+{{list.price}}.00元</div>
+                    <div class='taskListShowState' v-if="nowTime>=list.createTime && nowTime<=list.endTime">任务进行中</div>
+                    <div class='taskListHidState' v-else>任务已结束</div>
                 </div>
             </div>
 
-            <div class='taskList'>
+            <!-- <div class='taskList'>
                 <div class='taskListStatus'>
                     <img src='http://img.zcool.cn/community/0151f65775e18b0000012e7e4046ef.jpg@2o.jpg' class='taskListImg'/>
                     <div class='taskListInfo'>
@@ -78,26 +84,7 @@
                     <div class='taskListMomey'>+4.00元</div>
                     <div class='taskListState'>任务进行中</div>
                 </div>
-            </div>
-
-            <div class='taskList'>
-                <div class='taskListStatus'>
-                    <img src='http://img.zcool.cn/community/0151f65775e18b0000012e7e4046ef.jpg@2o.jpg' class='taskListImg'/>
-                    <div class='taskListInfo'>
-                        <div class='taskListName'>
-                            刺激战场（安卓）第四期
-                        </div>
-                        <div class='taskListNember'>
-                            <span>已抢28313份</span>
-                            <span>剩余71786份</span>
-                        </div>
-                    </div>
-                </div>
-                <div class='taskListNum'>
-                    <div class='taskListMomey'>+4.00元</div>
-                    <div class='taskListState'>任务进行中</div>
-                </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -105,7 +92,7 @@
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getNewInform,getIndexImg,getIndexNum,getTaskList,} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, NoticeBar, Swipe, SwipeItem, Toast} from 'vant';
 import Vue from 'vue';
@@ -116,19 +103,42 @@ export default {
     data () {
         return {
             hornUrl:img.horn,
-            scrollspan:"足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。",
-            imgs: [
-                'https://timgsa.baidu.com/timg?img&quality=80&size=b9999_10000&sec=1539424807423&di=2ddf1f1b098c7e8c2850d1f268b572e6&imgtype=0&src=http%3A%2F%2Fres.cngoldres.com%2Fupload%2F2015%2F0414%2Fc6cb66cd12a77199ab649f836bf62d34.jpg%3F_%3D1428978369311',
-                'https://timgsa.baidu.com/timg?img&quality=80&size=b9999_10000&sec=1539424864350&di=ccf8338e612f137a43f059a94e7f82c1&imgtype=0&src=http%3A%2F%2Fhimg2.huanqiu.com%2Fattachment2010%2F2017%2F1116%2F20171116021011617.jpg',
-                'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3335311430,4287071869&fm=26&gp=0.jpg',
-                'https://timgsa.baidu.com/timg?img&quality=80&size=b9999_10000&sec=1540734575&di=b624f93418e0135d40cd150812d351ae&imgtype=jpg&er=1&src=http%3A%2F%2Fs7.sinaimg.cn%2Fmw690%2F001oaouagy6XwS7oz30b6%26amp%3B690'
-            ]
+            informId:'',
+            indexNum:'',
+            lists:'',
+            scrollspan:"",
+            imgs: [],
+            ifShow:'',
+            nowTime:'',
         }
     },
     methods: {
-        goDetail(){
-            this.$router.push({path:'/Detail'});
+        goDetail(id){
+            this.$router.push({path:'/Detail',query:{id:id}});
+        },
+        goInformDetail(){
+            this.$router.push({path:'/InformDetail',query:{id:this.informId}});
         }
+    },
+    mounted () {
+        // 获取首页滚动通知
+        getNewInform().then(res=>{
+            this.scrollspan=res.data.data.title;
+            this.informId=res.data.data.id;
+        })
+        // 获取首页数据
+        getIndexNum().then(res=>{
+            this.indexNum=res.data.data;
+        })
+        // 获取轮播图
+        getIndexImg().then(res=>{
+            this.imgs=res.data.data;
+        })
+        // 获取任务列表
+        getTaskList().then(res=>{
+            this.lists=res.data.data;
+        })
+        this.nowTime=Date.parse(new Date())/1000;  
     },
     created () {
         var limit={
@@ -278,7 +288,7 @@ list{
   font-size:12px;
   color:#A8A8A8;
 }
-.taskListNember>text{
+.taskListNember>span{
   margin-right:11px;
 }
 
@@ -294,9 +304,16 @@ list{
   font-size:26rpx;
   color: #fe433a;
 }
-.taskListState{
+.taskListShowState{
   font-size:10px;
   background:#fd9113;
+  color:#ffffff;
+  border-radius:5px;
+  margin-top:5px;
+}
+.taskListHidState{
+  font-size:10px;
+  background:#009933;
   color:#ffffff;
   border-radius:5px;
   margin-top:5px;

@@ -9,7 +9,7 @@
             />
         </div>
         <div class="content">
-            <h3>【重要】关于暂停服务公告</h3>
+            <!-- <h3>【重要】关于暂停服务公告</h3>
             <div class="title">
                 亲爱的用户:
             </div>
@@ -24,22 +24,43 @@
             <div class="bottom">
                 <p>游天下</p>
                 <p>2018年4月6日</p>
-            </div>
+            </div> -->
+            <div v-html="content"></div>
         </div>
     </div>
 </template>
 <script>
-import {getUserLoginState} from '../api/getData';
+import {getUserLoginState,getInformDetail} from '../api/getData';
 import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
 
 Vue.use(NavBar).use(Toast);
 
 export default {
+    data () {
+        return {
+            id:'',
+            content:''
+        }
+    },
     methods: {
         onClickLeft(){
             this.$router.go(-1);
         }
+    },
+    mounted () {
+        this.id=this.$route.query.id;
+        let id='';
+        id={
+           id:this.id
+        }
+        getInformDetail(id).then(res=>{
+              if(res.data.success==true){
+                  this.content=res.data.data.content;
+              }else{
+                  this.$message(res.data.message);
+              }
+          })
     },
     created () {
         var limit={
@@ -80,28 +101,28 @@ export default {
     padding: 0 20px;
     box-sizing: border-box;
 }
-.content h3{
+/* .content h3{
     text-align: center;
-}
-.title{
+} */
+/* .title{
     margin-bottom: 10px;
-}
-.info{
+} */
+/* .info{
     line-height: 36px;
     text-indent:2em;
-}
-.number{
+} */
+/* .number{
     margin-top: 8px;
     text-indent:2em;
-}
-.bottom{
+} */
+/* .bottom{
     text-align: right;
     margin-top: 20px;
 }
 .bottom p{
     margin: 0;
     margin-top: 8px;
-}
+} */
 </style>
 
 
