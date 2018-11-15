@@ -49,6 +49,7 @@ Vue.use(NavBar).use(Toast);
 export default {
     data () {
         return {
+            id:'',
             userInfo:''
         }
     },
@@ -59,7 +60,7 @@ export default {
         goLogin(){
             // this.$router.push({path:'/'});
             var limit={
-                id:Number(this.$cookie.get('userId'))
+                id:this.id
             }
             logoutUserLogin(limit).then(res=>{
                 if(res.data.success==true){
@@ -70,8 +71,9 @@ export default {
         }
     },
     created () {
+        this.id=Number(localStorage.getItem('userId'));
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {

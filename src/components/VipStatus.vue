@@ -73,6 +73,7 @@ Vue.use(NavBar).use(Toast);
 export default {
     data () {
         return {
+            id:'',
             Img:img.images,
             data:''
         }
@@ -102,13 +103,14 @@ export default {
     },
     mounted () {
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:this.id
         }
         this.getInforn(limit);
     },
     created () {
+        this.id=Number(localStorage.getItem('userId'));
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {

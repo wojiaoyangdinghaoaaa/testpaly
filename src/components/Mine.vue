@@ -152,7 +152,7 @@ export default {
     },
     created () {
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             this.data=res.data.data;
@@ -213,7 +213,7 @@ export default {
   top:38%;
   left:50%;
   margin-left:-45px;
-  padding:5px;
+  /* padding:5px; */
   box-sizing:border-box;
   background:#ffffff;
   border-radius:50%;

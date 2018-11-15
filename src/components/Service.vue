@@ -205,7 +205,7 @@ export default {
   created: function () {
     this.asyncLoaded('https://bot.4paradigm.com/web/assets/ics-web-sdk.js');
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {
@@ -280,7 +280,7 @@ export default {
     background-color:#a9e368;
 }
 .user-head {
-    background-image: url("../assets/image/userhead.jpg");
+    background-image: url(../assets/image/userhead.jpg);
     background-size: cover;
     display: inline-block;
     width: 50px;
@@ -294,7 +294,7 @@ export default {
     overflow: hidden;
 }
 .robot-head {
-    background-image: url("../assets/image/icon.png");
+    background-image: url(../assets/image/icon.png);
     background-size: cover;
     display: inline-block;
     width: 50px;

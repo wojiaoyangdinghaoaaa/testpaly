@@ -127,6 +127,7 @@ Vue.use(NavBar).use(Tab).use(Tabs).use(List).use(PullRefresh).use(Toast);
 export default {
     data() {
         return {
+            id:'',
             active:0,
             lists: [],
             refreshing: false,
@@ -144,21 +145,21 @@ export default {
             if (this.active==0) {
                 this.type=null;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     type:null
                 }
                 this.getList(limit);  
             }else if (this.active==1) {
                 this.type=1;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     type:this.type
                 }
                 this.getList(limit);
             }else if (this.active==2) {
                 this.type=0;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     type:this.type
                 }
                 this.getList(limit);
@@ -181,7 +182,7 @@ export default {
         onRefresh() {
             setTimeout(() => {
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     type:this.type
                 }
                 this.getList(limit);
@@ -201,13 +202,14 @@ export default {
     },
     mounted () {
         var limit={
-            userId:Number(this.$cookie.get('userId')),
+            userId:this.id,
         }
         this.getList(limit);  
     },
     created () {
+        this.id=Number(localStorage.getItem('userId'));
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {

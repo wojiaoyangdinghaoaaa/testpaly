@@ -124,6 +124,7 @@ Vue.use(NavBar).use(Dialog).use(Toast);
 export default {
     data () {
         return {
+            id:'',
             nowTime:'',
             countDown:'',
             countTime:'',
@@ -144,7 +145,7 @@ export default {
         },
         getTask(){
             var limit={
-                userId:Number(this.$cookie.get('userId')),
+                userId:this.id,
                 taskId:this.taskid
             }
             receiveTask(limit).then(res=>{
@@ -183,7 +184,7 @@ export default {
             if (!this.pullTask) {
                 // 用户是否领取了任务
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     taskId:this.taskid
                 }
                 ifReceiveTask(limit).then(res=>{
@@ -214,7 +215,7 @@ export default {
                 });
                 }else{
                     var limit={
-                        userId:Number(this.$cookie.get('userId')),
+                        userId:this.id,
                         taskId:this.taskid,
                         submitContent:this.taskInfo
                     }
@@ -323,7 +324,7 @@ export default {
 
         // 用户是否领取了任务
         var limit={
-            userId:Number(this.$cookie.get('userId')),
+            userId:this.id,
             taskId:this.taskid
         }
         ifReceiveTask(limit).then(res=>{
@@ -342,8 +343,9 @@ export default {
         
     },
     created () {
+        this.id=Number(localStorage.getItem('userId'));
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {

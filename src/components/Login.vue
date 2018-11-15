@@ -77,7 +77,8 @@ export default{
               login(this.limit).then(res=>{
                     setTimeout(()=>{
                         if (res.data.success==true) {
-                              this.$cookie.set('userId', res.data.data.id, 365);
+                              localStorage.setItem('userId',res.data.data.id);
+                              // this.$cookie.set('userId', res.data.data.id, 365);
                               Toast('登录成功!');
                               this.$router.push({path:'/Tab'});
                               this.buttonState=true;
@@ -107,7 +108,8 @@ export default{
       
     },
     created () {
-      this.$cookie.delete('userId');
+      // this.$cookie.delete('userId');
+      localStorage.removeItem('userId');
     }
 }
 </script>
@@ -123,7 +125,6 @@ export default{
   height: 100px;
   margin: 10px;
   border-radius: 50%;
-  border:1px solid #000;
 }
 .inputBig input{
   border: 0;

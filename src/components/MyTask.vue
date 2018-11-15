@@ -133,6 +133,7 @@ Vue.use(NavBar).use(Tab).use(Tabs).use(List).use(PullRefresh).use(Toast);
 export default {
     data() {
         return {
+            id:'',
             active:0,
             lists: [],
             refreshing: false,
@@ -150,28 +151,28 @@ export default {
             if (this.active==0) {
                 this.status=0;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     status:this.status
                 }
                 this.getList(limit);
             }else if (this.active==1) {
                 this.status=1;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     status:this.status
                 }
                 this.getList(limit);
             }else if (this.active==2) {
                 this.status=2;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     status:this.status
                 }
                 this.getList(limit);
             }else if (this.active==3) {
                 this.status=3;
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     status:this.status
                 }
                 this.getList(limit);
@@ -192,7 +193,7 @@ export default {
         onRefresh() {
             setTimeout(() => {
                 var limit={
-                    userId:Number(this.$cookie.get('userId')),
+                    userId:this.id,
                     status:this.status
                 }
                 this.getList(limit);
@@ -211,7 +212,7 @@ export default {
                     if(res.data.success==true){
                         Toast('提交成功！');
                         var limit={
-                            userId:Number(this.$cookie.get('userId')),
+                            userId:this.id,
                             status:3
                         }
                         this.getList(limit);  
@@ -233,14 +234,15 @@ export default {
     },
     mounted () {
       var limit={
-        userId:Number(this.$cookie.get('userId')),
+        userId:this.id,
         status:0
       }
       this.getList(limit);  
     },
     created () {
+        this.id=Number(localStorage.getItem('userId'));
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {

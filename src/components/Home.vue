@@ -141,8 +141,10 @@ export default {
         this.nowTime=Date.parse(new Date())/1000;  
     },
     created () {
+        // console.log(Number(localStorage.getItem('userId')))
         var limit={
-            id:Number(this.$cookie.get('userId'))
+            // id:Number(this.$cookie.get('userId'))
+            id:Number(localStorage.getItem('userId'))
         }
         getUserLoginState(limit).then(res=>{
             if (res.data.success==false) {
@@ -242,7 +244,7 @@ export default {
   box-sizing: border-box;
   color: #787878;
   border-bottom: 2px solid #d7e8ff;
-  width:74px;
+  width:84px;
   margin-left:10px;
   padding:5px;
   font-size:16px;
