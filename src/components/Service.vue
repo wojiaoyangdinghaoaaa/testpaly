@@ -19,11 +19,13 @@
                             {{message.messageBody.question}}
                         </div>
                         <div class="user-head">
+                            <img :src="userhead">
                         </div>
                     </div>
 
                     <div class="answer-message" v-if="message.direction === 'OUT' || message.direction === 'H_OUT'">
                         <div class="robot-head">
+                            <img :src="icon">
                         </div>
                         <div class="answer-message-box">
                             <div class="s3-l"></div>
@@ -39,13 +41,16 @@
                             {{message.str}}
                         </div>
                         <div class="user-head">
+                            <img :src="userhead">
                         </div>
                     </div>
                     <div class="banner" v-if="message.type == 'banner'">
                         <span>{{message.answer}}</span>
                     </div>
                     <div class="answer-message" v-if="message.type === 'answer'">
-                        <div class="robot-head"></div>
+                        <div class="robot-head">
+                            <img :src="icon">
+                        </div>
                         <div class="answer-message-box">
                             <div class="s3-l"></div>
                             <span v-if="message.answerContentType === 'TEXT' && message.answerType !== 'RECOMMEND'">
@@ -98,6 +103,7 @@
 </template>
 <script>
 import {getUserLoginState} from '../api/getData';
+import img from '../../static/json/index.json';
 import { NavBar, Toast} from 'vant';
 import Vue from 'vue';
 
@@ -112,7 +118,9 @@ export default {
       messageList: [],
       lastTime: false,
       historyList: [],
-      hasHistory: true
+      hasHistory: true,
+      userhead:img.userhead,
+      icon:img.icon,
     }
   },
   methods: {
@@ -280,7 +288,6 @@ export default {
     background-color:#a9e368;
 }
 .user-head {
-    background-image: url(../assets/image/userhead.jpg);
     background-size: cover;
     display: inline-block;
     width: 50px;
@@ -289,20 +296,29 @@ export default {
     margin-left: 10px;
     vertical-align: middle;
 }
+.user-head img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
 .answer-message {
     text-align: left;
     overflow: hidden;
 }
 .robot-head {
-    background-image: url(../assets/image/icon.png);
     background-size: cover;
     display: inline-block;
     width: 50px;
-    height: 50px;
+    height: 50px; 
     border-radius: 50%;
     margin-right: 10px;
     vertical-align: middle;
     float: left;
+}
+.robot-head img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 .answer-message-box {
     display: inline-block;

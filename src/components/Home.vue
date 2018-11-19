@@ -8,11 +8,11 @@
             @click="goInformDetail"
             />
             <!-- 轮播图 -->
-            <van-swipe :autoplay="5000">
+            <van-swipe :autoplay="5000" :show-indicators="false">
                 <van-swipe-item  v-for="(img, index) in imgs" :key="index">
-                    <a :href="img.url">
-                        <img :src="img.imgAddress"/>
-                    </a>
+                    <!-- <a :href="img.url"> -->
+                        <img :src="img.imgAddress"  @click="goImgDetail(index)"/>
+                    <!-- </a> -->
                     
                 </van-swipe-item>
             </van-swipe>
@@ -113,6 +113,15 @@ export default {
         }
     },
     methods: {
+        goImgDetail(index){
+            if(index==1){
+                this.$router.push({path:'/Adver'});
+            }else if(index==2){
+                this.$router.push({path:'/Belle'});
+            }else if(index==3){
+                this.$router.push({path:'/Magic'});
+            }
+        },
         goDetail(id){
             this.$router.push({path:'/Detail',query:{id:id}});
         },

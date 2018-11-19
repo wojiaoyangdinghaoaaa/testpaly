@@ -15,7 +15,7 @@
                 :rate="finishRate"
                 :speed="100"
                 :stroke-width="60"
-                size="180px"
+                size="130px"
                 layer-color="#eee"
                 :text="finishCurrentRate.toFixed(0) + '%'"
             />
@@ -24,7 +24,7 @@
                 color="#13ce66"
                 fill="#fff"
                 :rate="remainRate"
-                size="180px"
+                size="130px"
                 layer-color="#eee"
                 :speed="100"
                 :stroke-width="60"
@@ -134,7 +134,7 @@ export default {
     box-sizing: border-box;
 }
 .van-circle{
-    margin-left: 15px;
+    margin-left: 50px;
 }
 .inform{
     width: 100%;

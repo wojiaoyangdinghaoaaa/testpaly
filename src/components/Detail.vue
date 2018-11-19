@@ -268,15 +268,15 @@ export default {
             //     window.location.href=urls.other;
             // }
 
-            // window.location.href=url;
+            window.location.href=url;
             console.log(url);
         },
         guopanDownApp(url){
-            // window.location.href=url;
+            window.location.href=url;
             console.log(url);
         },
         dangleDownApp(url){
-            // window.location.href=url;
+            window.location.href=url;
             console.log(url);
         },
         double(num) {

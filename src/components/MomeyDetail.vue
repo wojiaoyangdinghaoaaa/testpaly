@@ -192,7 +192,7 @@ export default {
         getList(limit){
             getMomeyDetail(limit).then(res=>{
                 if (res.data.success==true) {
-                    this.lists=res.data.data.list;
+                    this.lists=res.data.data;
                     this.refreshing = false;
                 }else{
                     Toast(res.data.message);

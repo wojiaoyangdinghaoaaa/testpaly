@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {login} from '../api/getData';
+import {login,getUserLoginState} from '../api/getData';
 import img from '../../static/json/index.json';
 import { NavBar, Button, Dialog, Toast} from 'vant';
 import Vue from 'vue';
@@ -109,7 +109,20 @@ export default{
     },
     created () {
       // this.$cookie.delete('userId');
-      localStorage.removeItem('userId');
+      // localStorage.removeItem('userId');
+      const role = localStorage.getItem('userId');
+      if (role) {
+        var limit={
+            id:Number(localStorage.getItem('userId'))
+        }
+        getUserLoginState(limit).then(res=>{
+            if (res.data.success==true) {
+                this.$router.push({path:'/Tab'});
+            }else{
+                console.log(res.data.success)
+            }
+        })
+      }
     }
 }
 </script>

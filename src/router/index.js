@@ -14,7 +14,6 @@ import MyTask from '@/components/MyTask'
 import Active from '@/components/Active'
 import VipStatus from '@/components/VipStatus'
 import Enjoy from '@/components/Enjoy'
-import Upgrade from '@/components/Upgrade'
 import MomeyDetail from '@/components/MomeyDetail'
 import Address from '@/components/Address'
 import Inform from '@/components/Inform'
@@ -29,6 +28,9 @@ import CheckTime from '@/components/CheckTime'
 import CheckNoPass from '@/components/CheckNoPass'
 import CheckMoney from '@/components/CheckMoney'
 import AddressAdd from '@/components/AddressAdd'
+import Adver from '@/components/Adver'
+import Belle from '@/components/Belle'
+import Magic from '@/components/Magic'
 
 
 Vue.use(Router)
@@ -93,11 +95,6 @@ export default new Router({
       path: '/Enjoy',
       name: 'Enjoy',
       component: Enjoy
-    },
-    {
-      path: '/Upgrade',
-      name: 'Upgrade',
-      component: Upgrade
     },
     {
       path: '/MomeyDetail',
@@ -168,6 +165,21 @@ export default new Router({
       path: '/AddressAdd',
       name: 'AddressAdd',
       component: AddressAdd
+    },
+    {
+      path: '/Adver',
+      name: 'Adver',
+      component: Adver
+    },
+    {
+      path: '/Belle',
+      name: 'Belle',
+      component: Belle
+    },
+    {
+      path: '/Magic',
+      name: 'Magic',
+      component: Magic
     },
     {
         path: '*',

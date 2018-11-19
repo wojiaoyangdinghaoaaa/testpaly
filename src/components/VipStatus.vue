@@ -23,7 +23,7 @@
             </div>
             <div class='containBottom'>
                 <div class='containBottomBtn'>
-                    <div class='containBottomLeft'>充值</div>
+                    <div class='containBottomLeft' @click="momey">充值</div>
                     <div class='containBottomRight'  @click="goShop">购物</div>
                 </div>
                 <div class='containBottomNum'>
@@ -59,28 +59,51 @@
             </div>
         </div>
 
+        <van-popup v-model="show" :close-on-click-overlay="false">
+            <div class="upgradeShow">
+                <div class="upgradeImg">
+                    <img :src="upgradeImg" />
+                </div>
+                <div class="text">
+                    如想拥有更多权益请联系在线客服
+                </div>
+                <div class="btn" @click="showHid">
+                    我知道了
+                </div>
+            </div>
+        </van-popup>
 
     </div>
 </template>
 <script>
 import {getUserLoginState,getUserInforn} from '../api/getData';
 import img from '../../static/json/index.json';
-import { NavBar, Toast} from 'vant';
+import { NavBar, Toast, Popup, Dialog} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Toast);
+Vue.use(NavBar).use(Toast).use(Popup).use(Dialog);
 
 export default {
     data () {
         return {
             id:'',
             Img:img.images,
-            data:''
+            data:'',
+            show:false,
+            upgradeImg:img.upgradeImg,
         }
     },
     methods: {
         onClickLeft(){
             this.$router.go(-1);
+        },
+        momey(){
+            Dialog.alert({
+            title: '温馨提示',
+            message: '暂时不能充值,请谅解!'
+            }).then(() => {
+            // on close
+            });
         },
         goShop(){
             this.$router.push({path:'/shop'});
@@ -89,7 +112,10 @@ export default {
             this.$router.push({path:'/Enjoy'});
         },
         goUpgrade(){
-            this.$router.push({path:'/Upgrade'});
+            this.show=true;
+        },
+        showHid(){
+            this.show=false;
         },
         getInforn(limit){
             getUserInforn(limit).then(res=>{
@@ -164,11 +190,10 @@ export default {
   color: #fff;
   font-size: 15px;
   position: absolute;
-  bottom: -34%;
-  width: 75px;
-  height: 75px;
+  bottom: -39%;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  padding: 2px;
   border: 1px solid #000;
   background:#ffffff;
   left:50%;
@@ -254,6 +279,36 @@ export default {
   font-size: 20px;
   color: #b9b9b9;
   content: '\e603'
+}
+.upgradeShow{
+    width: 300px;
+    height: 390px;
+}
+.upgradeImg{
+    width: 100%;
+    height: 250px;
+}
+.upgradeImg img{
+    height: 100%;
+    width: 100%;
+}
+.upgradeShow .text{
+    width: 100%;
+    text-align: center;
+    color: #FFCC33;
+    line-height: 26px;
+    margin-top: 8px;
+}
+.upgradeShow .btn{
+    width: 85%;
+    color: #fff;
+    font-size: 18px;
+    background: #f14a4c;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 8px 0;
+    text-align: center;
+    margin-top: 33px;
 }
 </style>
 

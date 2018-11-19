@@ -16,6 +16,22 @@ Vue.filter('datefmt',function(input,fmtstring){       //转换时间戳
 
 Vue.config.productionTip = false
 
+
+
+// 使用钩子函数对路由进行权限跳转
+router.beforeEach((to, from, next) => {
+  const role = localStorage.getItem('userId');
+  if(!role && to.path !== '/' && to.path !== '/RegistNum' && to.path !== '/Regist'){
+      next('/');
+  }else{
+      next();
+  }
+})
+
+
+
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
