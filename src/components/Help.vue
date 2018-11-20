@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class='list'>
+                <div class='list' @click="tackMe">
                     <span class='listLeft'>联系客服</span>
                     <div class='listRight'>
                         <span></span>
@@ -41,10 +41,10 @@
 </template>
 <script>
 import {getUserLoginState} from '../api/getData';
-import { NavBar, Toast} from 'vant';
+import { NavBar, Toast,  Dialog} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Toast);
+Vue.use(NavBar).use(Toast).use(Dialog);
 
 export default {
     methods: {
@@ -56,6 +56,14 @@ export default {
         },
         goFAQ(){
             this.$router.push({path:'/FAQ'});
+        },
+        tackMe(){
+            Dialog.alert({
+            title: '温馨提示',
+            message: '请关注公众号联系在线客服<乐游暇>或在APP中联系在线客服!'
+            }).then(() => {
+            // on close
+            });
         }
     },
     created () {

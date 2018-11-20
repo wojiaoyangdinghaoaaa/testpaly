@@ -13,7 +13,6 @@ import Money from '@/components/Money'
 import MyTask from '@/components/MyTask'
 import Active from '@/components/Active'
 import VipStatus from '@/components/VipStatus'
-import Enjoy from '@/components/Enjoy'
 import MomeyDetail from '@/components/MomeyDetail'
 import Address from '@/components/Address'
 import Inform from '@/components/Inform'
@@ -27,10 +26,16 @@ import FAQ from '@/components/FAQ'
 import CheckTime from '@/components/CheckTime'
 import CheckNoPass from '@/components/CheckNoPass'
 import CheckMoney from '@/components/CheckMoney'
+import CheckNopush from '@/components/CheckNopush'
+import CheckFreeze from '@/components/CheckFreeze'
+import CheckAdvan from '@/components/CheckAdvan'
+import CheckNoChange from '@/components/CheckNoChange'
+import CheckService from '@/components/CheckService'
 import AddressAdd from '@/components/AddressAdd'
 import Adver from '@/components/Adver'
 import Belle from '@/components/Belle'
 import Magic from '@/components/Magic'
+
 
 
 Vue.use(Router)
@@ -90,11 +95,6 @@ export default new Router({
       path: '/VipStatus',
       name: 'VipStatus',
       component: VipStatus
-    },
-    {
-      path: '/Enjoy',
-      name: 'Enjoy',
-      component: Enjoy
     },
     {
       path: '/MomeyDetail',
@@ -160,6 +160,31 @@ export default new Router({
       path: '/CheckMoney',
       name: 'CheckMoney',
       component: CheckMoney 
+    },
+    {
+      path: '/CheckNopush',
+      name: 'CheckNopush',
+      component: CheckNopush 
+    },
+    {
+      path: '/CheckFreeze',
+      name: 'CheckFreeze',
+      component: CheckFreeze 
+    },
+    {
+      path: '/CheckAdvan',
+      name: 'CheckAdvan',
+      component: CheckAdvan
+    },
+    {
+      path: '/CheckNoChange',
+      name: 'CheckNoChange',
+      component: CheckNoChange
+    },
+    {
+      path: '/CheckService',
+      name: 'CheckService',
+      component: CheckService
     },
     {
       path: '/AddressAdd',

@@ -36,6 +36,46 @@
                     </div>
                 </div>
 
+                <div class='list'  @click="goCheckNopush">
+                    <span class='listLeft'>为什么任务结束后就不能提交？</span>
+                    <div class='listRight'>
+                        <span></span>
+                        <i></i>
+                    </div>
+                </div>
+
+                <div class='list'  @click="goCheckFreeze">
+                    <span class='listLeft'>为什么游戏账号会被冻结？</span>
+                    <div class='listRight'>
+                        <span></span>
+                        <i></i>
+                    </div>
+                </div>
+
+                <div class='list'  @click="goCheckAdvan">
+                    <span class='listLeft'>升级会员有什么好处？</span>
+                    <div class='listRight'>
+                        <span></span>
+                        <i></i>
+                    </div>
+                </div>
+
+                <div class='list'  @click="goCheckNoChange">
+                    <span class='listLeft'>为什么不能修改密码？</span>
+                    <div class='listRight'>
+                        <span></span>
+                        <i></i>
+                    </div>
+                </div>
+
+                <div class='list'  @click="goCheckService">
+                    <span class='listLeft'>如何联系官方客服？</span>
+                    <div class='listRight'>
+                        <span></span>
+                        <i></i>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -61,6 +101,21 @@ export default {
         },
         goCheckMoney(){
             this.$router.push({path:'/CheckMoney'});
+        },
+        goCheckNopush(){
+            this.$router.push({path:'/CheckNopush'});
+        },
+        goCheckFreeze(){
+            this.$router.push({path:'/CheckFreeze'});
+        },
+        goCheckAdvan(){
+            this.$router.push({path:'/CheckAdvan'});
+        },
+        goCheckNoChange(){
+            this.$router.push({path:'/CheckNoChange'});
+        },
+        goCheckService(){
+            this.$router.push({path:'/CheckService'});
         }
     },
     created () {

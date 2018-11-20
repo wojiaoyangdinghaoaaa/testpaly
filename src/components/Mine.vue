@@ -95,10 +95,10 @@
 <script>
 import {getUserLoginState} from '../api/getData';
 import img from '../../static/json/index.json';
-import { NavBar, Toast} from 'vant';
+import { NavBar, Toast, Dialog} from 'vant';
 import Vue from 'vue';
 
-Vue.use(NavBar).use(Toast);
+Vue.use(NavBar).use(Toast).use(Dialog);
 
 export default {
     data () {
@@ -132,7 +132,13 @@ export default {
             this.$router.push({path:'/MomeyDetail'});
         },
         goAddress(){
-            this.$router.push({path:'/Address'});
+            // this.$router.push({path:'/Address'});
+            Dialog.alert({
+            title: '温馨提示',
+            message: '对不起！商城暂时未开放。'
+            }).then(() => {
+            // on close
+            });
         },
         goInform(){
             this.$router.push({path:'/Inform'});
@@ -217,7 +223,7 @@ export default {
   box-sizing:border-box;
   background:#ffffff;
   border-radius:50%;
-  border:1px solid #000;
+  border:1px solid #707070;
 }
 .userinfo-avatar {
   width:100%;

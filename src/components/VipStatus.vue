@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <van-popup v-model="show" :close-on-click-overlay="false">
+        <van-popup v-model="upgradeShow" :close-on-click-overlay="false">
             <div class="upgradeShow">
                 <div class="upgradeImg">
                     <img :src="upgradeImg" />
@@ -67,8 +67,34 @@
                 <div class="text">
                     如想拥有更多权益请联系在线客服
                 </div>
-                <div class="btn" @click="showHid">
+                <div class="btn" @click="upgradeHid">
                     我知道了
+                </div>
+            </div>
+        </van-popup>
+
+
+        <van-popup v-model="enjoyShow" :close-on-click-overlay="false">
+            <div class="enjoyShow">
+                <div class="enjoyImg">
+                    <img :src="enjoyImg" />
+                </div>
+                <div class="enjoyText">
+                    <div class="texts">
+                        <div class="textRound"></div>
+                        <div class="text">
+                            您已经是vip会员，可在平台享受每天享受领取两个任务的权益。
+                        </div>
+                    </div>
+                    <div class="texts textsBottom">
+                        <div class="textRound"></div>
+                        <div class="text">
+                            如想拥有更高的权益，请升级您的会员等级。
+                        </div>
+                    </div>
+                </div>
+                <div class="enjoyBtn" @click="enjoyHid"> 
+                    去升级
                 </div>
             </div>
         </van-popup>
@@ -89,8 +115,10 @@ export default {
             id:'',
             Img:img.images,
             data:'',
-            show:false,
+            upgradeShow:false,
             upgradeImg:img.upgradeImg,
+            enjoyShow:false,
+            enjoyImg:img.enjoyImg,
         }
     },
     methods: {
@@ -109,13 +137,16 @@ export default {
             this.$router.push({path:'/shop'});
         },
         goEnjoy(){
-            this.$router.push({path:'/Enjoy'});
+            this.enjoyShow=true;
+        },
+        enjoyHid(){
+            this.enjoyShow=false;
         },
         goUpgrade(){
-            this.show=true;
+            this.upgradeShow=true;
         },
-        showHid(){
-            this.show=false;
+        upgradeHid(){
+            this.upgradeShow=false;
         },
         getInforn(limit){
             getUserInforn(limit).then(res=>{
@@ -194,7 +225,7 @@ export default {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1px solid #707070;
   background:#ffffff;
   left:50%;
   margin-left:-38px;
@@ -309,6 +340,53 @@ export default {
     padding: 8px 0;
     text-align: center;
     margin-top: 33px;
+}
+.enjoyShow{
+    width: 300px;
+    height: 390px;
+}
+.enjoyImg{
+    width: 100%;
+    height: 134px;
+}
+.enjoyImg img{
+    height: 100%;
+    width: 100%;
+}
+.enjoyText{
+    padding: 23px 19px 0;
+    box-sizing: border-box;
+}
+.texts{
+    position: relative;
+}
+.textRound{
+    width: 6px;
+    height: 6px;
+    background: #9a9a9a;
+    border-radius: 50%;
+    position: absolute;
+    top: 9px;
+}
+.text{
+    color: #9a9a9a;
+    font-size: 15px;
+    line-height: 24px;
+    text-indent: 1em;
+}
+.textsBottom{
+    margin-top: 16px;
+}
+.enjoyBtn{
+    width: 53%;
+    color: #fff;
+    text-align: center;
+    background: #17c5ac;
+    margin: 0 auto;
+    margin-top: 36px;
+    border-radius: 6px;
+    font-size: 19px;
+    padding: 7px 0;
 }
 </style>
 

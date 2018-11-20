@@ -10,37 +10,43 @@
         </div>
         <div class="content">
             <div class="who">
-                <h3>小花是谁？</h3>
+                <h3>乐游暇是谁？</h3>
                 <div class="info">
-                    小花钱包时提供科技服务和支持的第三方，
-                    利用生物识别技术，结合只能机器学习方法，
-                    以及其他金融科技方面的优势为网络借贷信息中介平台及中航信托等合作方推荐优质的借款客户。
+                    乐游暇是在当前火爆的游戏市场中应运而生的一个集游戏与传媒为一身的新型网络科技平台。
+                    乐游暇，利用新颖的模式，与国内多个大型游戏公司达成战略合作，为国内游戏，推波助澜！
                 </div>
                 <div class="info">
-                    小花钱包不保证推荐客户百分百通过合作方的风控审核。
-                    作为金融科技服务商，小花钱包不发放贷款。
-                    贷款服务由合作方提供，小花钱包不经手不触碰客户资金。
+                    乐游暇，为用户开启了一道爱上手游的大门，
+                    作为手游整合服务商，乐游暇为用户提供了强大的技术支持和良好的用户体验。
+                    来吧！让你的闲暇时光，游起来。
                 </div>
                 <img :src="usImg" class="usImg"/>
             </div>
 
             <div class="who">
-                <h3>小花从哪来？</h3>
+                <h3>乐游暇从哪来？</h3>
                 <div class="info">
-                    小花钱包时提供科技服务和支持的第三方，
-                    利用生物识别技术，结合只能机器学习方法，
-                    以及其他金融科技方面的优势为网络借贷信息中介平台及中航信托等合作方推荐优质的借款客户。
+                    乐游暇，作为一个新型的互联网科技平台。
+                    在天使轮即获得首都创投（代码:HK2324）旗下"836基金"的领投，
+                    华润资本跟投。
+                </div>
+                <div class="info">
+                    于是，在如此强大的背景和良好的条件下，乐游暇诞生了。
+                    上线短时间内，获得了用户的强烈好评和追捧。
+                </div>
+                <div class="info">
+                    这就是我---乐游暇。
                 </div>
             </div>
 
         </div>
         <div class="bottom">
             <div class="chinese">
-                <span>小花（厦门）互联网金融信息服务有限公司</span>
+                <span>乐游暇（上海）互联网信息科技服务有限公司</span>
                 <span>版权所有</span>
             </div>
             <div class="english">
-                Copyright 2018 © Xiamen Xiaohua Financial Information Services Group Co.,Ltd.AllRights Reserved.
+                Copyright 2018 © Shanghai Leyouxia Internet Information Technology Services Ltd.AllRights Reserved.
             </div>
         </div>
     </div>

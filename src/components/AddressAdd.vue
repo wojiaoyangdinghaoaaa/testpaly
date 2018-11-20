@@ -94,7 +94,17 @@ export default {
         },
         saveInfo(){
             if (this.username!='' && this.phone!='' && this.address!='' && this.addressDetail!='' && this.postcode!='') {
+                var adressData={
+                    username:this.username,
+                    phone:this.phone,
+                    province:this.province,
+                    city:this.city,
+                    county:this.county,
+                    addressDetail:this.addressDetail,
+                    postcode:this.postcode
+                }
                 Toast('保存成功!');
+                // this.$router.push({path:'/Address'});
             }else{
                 Toast('收货信息必须填写完整!');
             }

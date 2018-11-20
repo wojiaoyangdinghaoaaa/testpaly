@@ -1,5 +1,5 @@
 {
-    "images":"static/image/title.jpg",
+    "images":"static/image/title.png",
     "ruleLeft":"static/image/ruleLeft.png",
     "ruleRight":"static/image/ruleRight.png",
     "horn":"static/image/laba.png",
@@ -22,5 +22,7 @@
     "adverImg":"static/image/adverImg.jpg",
     "userhead":"static/image/userhead.jpg",
     "icon":"static/image/icon.jpg",
-    "upgradeImg":"static/image/upgradeImg.png"
+    "upgradeImg":"static/image/upgradeImg.png",
+    "enjoyImg":"static/image/enjoy.png",
+    "liuchenImg":"static/image/liuchen.jpg"
 }

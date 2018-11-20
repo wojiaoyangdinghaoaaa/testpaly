@@ -58,7 +58,7 @@ Vue.use(NavBar).use(AddressList).use(Toast);
 export default {
     data () {
         return {
-            
+            address:''
         }
     },
     methods: {
