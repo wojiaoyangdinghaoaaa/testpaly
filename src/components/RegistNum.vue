@@ -31,7 +31,7 @@ export default {
             number:0,
             flagNum:'',
             flag:0,
-            parameter: [{ id: 0, number:'50',checked:false }, { id: 1, number:'100' ,checked:false}, { id: 2, number:'200' ,checked:false}],
+            parameter: [{ id: 0, number:'1',checked:false },{ id: 1, number:'50',checked:false }, { id: 2, number:'100' ,checked:false}, { id: 3, number:'200' ,checked:false}],
         }
     },
     methods: {
@@ -87,7 +87,7 @@ export default {
                 this.flag++;
             }
         };
-        if (this.flag==3) {
+        if (this.flag==4) {
             this.flagNum=this.number;
             this.flag=0;
 

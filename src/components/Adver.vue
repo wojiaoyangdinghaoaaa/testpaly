@@ -13,14 +13,14 @@
             <div class="img">
                 <img :src="adverImg"/>
             </div>
-            <div class="weixin">
+            <!-- <div class="weixin">
                 乐游暇唯一官方公众号:
                 <span>lyx公众号</span>
             </div>
             <div class="weixin">
                 乐游暇唯一客服电话:
                 <span>400828187</span>
-            </div>
+            </div> -->
             <div class="tack">
                 APP在线咨询:
             </div>

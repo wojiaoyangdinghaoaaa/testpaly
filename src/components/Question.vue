@@ -17,7 +17,8 @@
                 <input type="text" v-model="email" placeholder="输入邮箱地址">
                 <p>留下您的联系方式，以便我们了解问题后及时反馈结果，紧急问题请联系客服。</p>
                 <b>联系我们:</b>
-                <span>关注公众号"乐游暇",联系在线客服</span>
+                <span>App中联系在线客服</span>
+                <!-- <span>关注公众号"乐游暇",联系在线客服</span> -->
             </div>
             <div class="btn" @click="saveFeedback">提交</div>
         </div>

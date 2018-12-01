@@ -60,7 +60,7 @@ export default {
         tackMe(){
             Dialog.alert({
             title: '温馨提示',
-            message: '请关注公众号联系在线客服<乐游暇>或在APP中联系在线客服!'
+            message: '请关注公众号联系在线客服或在APP中联系在线客服!'
             }).then(() => {
             // on close
             });

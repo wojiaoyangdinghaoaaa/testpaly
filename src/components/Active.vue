@@ -9,30 +9,40 @@
             />
         </div>
         <div class="content">
-            <van-circle
+            <div class="circleLeft">
+                <van-circle
                 v-model="finishCurrentRate"
                 color="#0099FF"
                 :rate="finishRate"
                 :speed="100"
                 :stroke-width="60"
-                size="130px"
+                size="160px"
                 layer-color="#eee"
                 :text="finishCurrentRate.toFixed(0) + '%'"
-            />
-            <van-circle
+                />
+            </div>
+
+            <div class="inform">
+                <div class="informFinish">完成活跃度:{{number}}</div>
+            </div>
+            
+
+            <div class="circleRight">
+                <van-circle
                 v-model="remainCurrentRate"
                 color="#13ce66"
                 fill="#fff"
                 :rate="remainRate"
-                size="130px"
+                size="160px"
                 layer-color="#eee"
                 :speed="100"
                 :stroke-width="60"
                 :clockwise="false"
                 :text="remainCurrentRate.toFixed(0) + '%'"
-            />
+                />
+            </div>
+            
             <div class="inform">
-                <div class="informFinish">完成活跃度:{{number}}</div>
                 <div class="informRemain">剩余活跃度:{{2-number}}</div>
             </div>
             <div class="bottom" v-if="number!=2">
@@ -133,28 +143,32 @@ export default {
     padding-top: 28px;
     box-sizing: border-box;
 }
+.circleLeft{
+    text-align: center;
+}
+.circleRight{
+    text-align: center;
+}
 .van-circle{
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 .inform{
     width: 100%;
-    overflow: hidden;
     margin-top: 12px;
     font-size: 18px;
 }
 .informFinish{
-    float: left;
-    width: 50%;
+    width: 100%;
     text-align: center;
+    margin-bottom: 30px;
 }
 .informRemain{
-    float: right;
-    width: 50%;
+    width: 100%;
     text-align: center;
 }
 .bottom{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 .text{
     color: #A8A8A8;
