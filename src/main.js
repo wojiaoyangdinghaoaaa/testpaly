@@ -5,8 +5,10 @@ import App from './App'
 import router from './router'
 import VueCookie from 'vue-cookie'
 import moment from 'moment' 
+import VCharts from 'v-charts'
 
 Vue.use(VueCookie);
+Vue.use(VCharts);
 
 Vue.filter('datefmt',function(input,fmtstring){       //转换时间戳
   

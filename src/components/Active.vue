@@ -10,7 +10,7 @@
         </div>
         <div class="content">
             <div class="circleLeft">
-                <van-circle
+                <!-- <van-circle
                 v-model="finishCurrentRate"
                 color="#0099FF"
                 :rate="finishRate"
@@ -19,7 +19,8 @@
                 size="160px"
                 layer-color="#eee"
                 :text="finishCurrentRate.toFixed(0) + '%'"
-                />
+                /> -->
+                <ve-liquidfill :data="chartDataTop" :settings="chartSettingsTop"></ve-liquidfill>
             </div>
 
             <div class="inform">
@@ -28,7 +29,7 @@
             
 
             <div class="circleRight">
-                <van-circle
+                <!-- <van-circle
                 v-model="remainCurrentRate"
                 color="#13ce66"
                 fill="#fff"
@@ -39,7 +40,8 @@
                 :stroke-width="60"
                 :clockwise="false"
                 :text="remainCurrentRate.toFixed(0) + '%'"
-                />
+                /> -->
+                <ve-liquidfill :data="chartDataBottom" :settings="chartSettingsBottom"></ve-liquidfill>
             </div>
             
             <div class="inform">
@@ -65,12 +67,57 @@ Vue.use(NavBar).use(Circle).use(Toast);
 
 export default {
   data () {
+      this.chartSettingsTop = {
+        seriesMap: {
+          '已完成': {
+            color: ['#009966'],
+            outline:{
+                itemStyle:{
+                    borderColor:'#009966'
+                }
+            },
+            label: {
+              color: '#009966'
+            }
+          }
+        }
+      }
+      this.chartSettingsBottom = {
+        seriesMap: {
+          '剩余': {
+            color: ['#0099FF'],
+            outline:{
+                itemStyle:{
+                    borderColor:'#0099FF'
+                }
+            },
+            label: {
+              color: '#0099FF'
+            }
+          }
+        }
+      }
       return {
           finishRate:0,
           remainRate: 0,
           finishCurrentRate: 0,
           remainCurrentRate: 0,
-          number:''
+          number:'',
+          chartDataTop: {
+            columns: ['city', 'percent'],
+            rows: [{
+                city: '已完成',
+                percent: 0
+            }]
+          },
+          chartDataBottom: {
+            columns: ['city', 'percent'],
+            rows: [{
+                city: '剩余',
+                percent: 0
+            }]
+          },
+
       }
   },
   methods: {
@@ -89,14 +136,14 @@ export default {
           if (res.data.success==true) {
               this.number=res.data.data;
               if(this.number==0){
-                  this.finishRate=0;
-                  this.remainRate=100;
+                  this.chartDataTop.rows[0].percent=0;
+                  this.chartDataBottom.rows[0].percent=1;
               }else if(this.number==1){
-                  this.finishRate=50;
-                  this.remainRate=50;
+                  this.chartDataTop.rows[0].percent=0.5;
+                  this.chartDataBottom.rows[0].percent=0.5;
               }else if(this.number==2){
-                  this.finishRate=100;
-                  this.remainRate=0;
+                  this.chartDataTop.rows[0].percent=1;
+                  this.chartDataBottom.rows[0].percent=0;
               }
 
           }else{
@@ -145,9 +192,13 @@ export default {
 }
 .circleLeft{
     text-align: center;
+    margin-top: -96px;
+    height: 316px;
 }
 .circleRight{
     text-align: center;
+    margin-top: -106px;
+    height: 316px;
 }
 .van-circle{
     /* margin-left: 50px; */
@@ -168,7 +219,8 @@ export default {
 }
 .bottom{
     width: 100%;
-    margin-top: 40px;
+    margin-top: 26px;
+    margin-bottom: 60px;
 }
 .text{
     color: #A8A8A8;
