@@ -130,7 +130,7 @@ export default {
   },
   mounted () {
         var limit={
-            userId:Number(this.$cookie.get('userId'))
+            userId:Number(localStorage.getItem('userId'))
         }
       getUserActivity(limit).then(res=>{
           if (res.data.success==true) {

@@ -11,7 +11,7 @@
         <div class="content">
             <van-tabs v-model="active" @click="onClick" sticky>
                 <van-tab title="已领取">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -32,10 +32,10 @@
                             </div>
                             
                         </van-list>
-                    </van-pull-refresh>
+                    </div>
                 </van-tab>
                 <van-tab title="待审核">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -59,10 +59,10 @@
                             </div>
 
                         </van-list>
-                    </van-pull-refresh>
+                    </div>
                 </van-tab>
                 <van-tab title="已审核">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -87,10 +87,10 @@
 
 
                         </van-list>
-                    </van-pull-refresh>  
+                    </div>  
                 </van-tab>
                 <van-tab title="未通过">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -115,7 +115,7 @@
                             </div>
 
                         </van-list>
-                    </van-pull-refresh>     
+                    </div>     
                 </van-tab>
             </van-tabs>
         </div>
@@ -269,6 +269,9 @@ export default {
     width: 100%;
     flex: 1;
     overflow: auto;
+}
+.content::-webkit-scrollbar{
+    width:0;height:0
 }
 .van-nav-bar{
     background: #0099FF;

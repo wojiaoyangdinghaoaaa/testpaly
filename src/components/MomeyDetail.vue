@@ -11,7 +11,7 @@
         <div class="content">
             <van-tabs v-model="active" @click="onClick" sticky>
                 <van-tab title="全部记录">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -35,10 +35,10 @@
 
 
                         </van-list>
-                    </van-pull-refresh>
+                    </div>
                 </van-tab>
                 <van-tab title="任务收益">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -62,10 +62,10 @@
 
 
                         </van-list>
-                    </van-pull-refresh>
+                    </div>
                 </van-tab>
                 <van-tab title="提现记录">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -90,10 +90,10 @@
 
 
                         </van-list>
-                    </van-pull-refresh>  
+                    </div>  
                 </van-tab>
                 <van-tab title="充值记录">
-                    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <div>
                         <van-list
                         v-model="loading"
                         :finished="finished"
@@ -109,7 +109,7 @@
 
                             
                         </van-list>
-                    </van-pull-refresh>     
+                    </div>     
                 </van-tab>
             </van-tabs>
         </div>
@@ -236,6 +236,9 @@ export default {
     width: 100%;
     flex: 1;
     overflow: auto;
+}
+.content::-webkit-scrollbar{
+    width:0;height:0
 }
 .van-nav-bar{
     background: #0099FF;
